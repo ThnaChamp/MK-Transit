@@ -8,7 +8,7 @@
             "id": "N8",
             "name": "Mo-Chit",
             "connections": [
-              { "to": "N7", "distance": 1.5 },
+              { "to": "N7", "distance": 1.4 },
               { "to": "BL2", "distance": 0.3 }
             ]
           },
