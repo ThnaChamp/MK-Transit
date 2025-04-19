@@ -1,0 +1,168 @@
+{
+    "lines": [
+      {
+        "name": "SUKHUMVIT",
+        "color": "lightgreen",
+        "stations": [
+          {
+            "id": "N8",
+            "name": "Mo-Chit",
+            "connections": [
+              { "to": "N7", "distance": 1.3 },
+              { "to": "BL2", "distance": 0.3 }
+            ]
+          },
+          {
+            "id": "N7",
+            "name": "Saphan-Khwai",
+            "connections": [
+              { "to": "N8", "distance": 1.3 },
+              { "to": "N5", "distance": 1.1 }
+            ]
+          },
+          {
+            "id": "N5",
+            "name": "Ari",
+            "connections": [
+              { "to": "N7", "distance": 1.1 }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MRT_BLUE",
+        "color": "blue",
+        "stations": [
+          {
+            "id": "BL3",
+            "name": "Chatuchak-Park",
+            "connections": [
+              { "to": "BL2", "distance": 1.2 },
+              { "to": "N8", "distance": 0.3 }
+            ]
+          },
+          {
+            "id": "BL2",
+            "name": "Kamphaeng-Phet",
+            "connections": [
+              { "to": "BL2", "distance": 1.2 }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ARL",
+        "color": "darkred",
+        "stations": [
+          {
+            "id": "A8",
+            "name": "Phaya-Thai",
+            "connections": [
+              { "to": "A7", "distance": 1.0 },
+              { "to": "N2", "distance": 0.2 }
+            ]
+          },
+          {
+            "id": "A7",
+            "name": "Ratchaprarop",
+            "connections": [
+              { "to": "A8", "distance": 1.0 }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "BTS_SILOM",
+        "color": "darkgreen",
+        "stations": [
+          {
+            "id": "S2",
+            "name": "Sala-Daeng",
+            "connections": [
+              { "to": "S3", "distance": 1.2 },
+              { "to": "BL26", "distance": 0.3 }
+            ]
+          },
+          {
+            "id": "S3",
+            "name": "Chong-Nonsi",
+            "connections": [
+              { "to": "S2", "distance": 1.2 }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "GOLD_LINE",
+        "color": "gold",
+        "stations": [
+          {
+            "id": "G2",
+            "name": "Charoen-Nakhorn",
+            "connections": [
+              { "to": "???", "distance": "" },
+              { "to": "???", "distance": "" }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CT",
+        "color": "red",
+        "stations": [
+          {
+            "id": "RN02",
+            "name": "Chatuchak",
+            "connections": [
+              { "to": "???", "distance": "" },
+              { "to": "???", "distance": "" }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MRT_PINK",
+        "color": "pink",
+        "stations": [
+          {
+            "id": "PK01",
+            "name": "Nonthaburi-Civic-Center",
+            "connections": [
+              { "to": "???", "distance": "" },
+              { "to": "???", "distance": "" }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MRT_YELLOW",
+        "color": "lightred",
+        "stations": [
+          {
+            "id": "YL01",
+            "name": "Lat-Phrao",
+            "connections": [
+              { "to": "???", "distance": "" },
+              { "to": "???", "distance": "" }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MRT_PURPLE",
+        "color": "purple",
+        "stations": [
+          {
+            "id": "PP6",
+            "name": "Tao-Poon",
+            "connections": [
+              { "to": "???", "distance": "" },
+              { "to": "???", "distance": "" }
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+  
