@@ -5,26 +5,377 @@
         "color": "lightgreen",
         "stations": [
           {
+            "id": "N24",
+            "name": "Khu Khot",
+            "connections": [
+              { "to": "N23", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N23",
+            "name": "Yaek Kor Por Aor",
+            "connections": [
+              { "to": "N24", "distance": 2 },
+              { "to": "N22", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N22",
+            "name": "Royal Thai Air Force Museum",
+            "connections": [
+              { "to": "N23", "distance": 2 },
+              { "to": "N21", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N21",
+            "name": "Bhumibol Adulyadej Hospital",
+            "connections": [
+              { "to": "N22", "distance": 2 },
+              { "to": "N20", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N20",
+            "name": "Saphan Mai",
+            "connections": [
+              { "to": "N21", "distance": 2 },
+              { "to": "N19", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N19",
+            "name": "Sai Yud",
+            "connections": [
+              { "to": "N20", "distance": 2 },
+              { "to": "N18", "distance": 1 }
+            ]
+          },
+          {
+            "id": "N18",
+            "name": "Phahon Yothin 59",
+            "connections": [
+              { "to": "N19", "distance": 1 },
+              { "to": "N17", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N17",
+            "name": "Wat Phra Sri Mahathat",
+            "connections": [
+              { "to": "N18", "distance": 2 },
+              { "to": "N16", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N16",
+            "name": "11th Infantry Regiment",
+            "connections": [
+              { "to": "N17", "distance": 2 },
+              { "to": "N15", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N15",
+            "name": "Bang Bua",
+            "connections": [
+              { "to": "N16", "distance": 2 },
+              { "to": "N14", "distance": 1 }
+            ]
+          },
+          {
+            "id": "N14",
+            "name": "Royal Forest Department",
+            "connections": [
+              { "to": "N15", "distance": 1 },
+              { "to": "N13", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N13",
+            "name": "Kasetsart University",
+            "connections": [
+              { "to": "N14", "distance": 2 },
+              { "to": "N12", "distance": 1 }
+            ]
+          },
+          {
+            "id": "N12",
+            "name": "Sena Nikhom",
+            "connections": [
+              { "to": "N13", "distance": 1 },
+              { "to": "N11", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N11",
+            "name": "Ratchayothin",
+            "connections": [
+              { "to": "N12", "distance": 2 },
+              { "to": "N10", "distance": 1 }
+            ]
+          },
+          {
+            "id": "N10",
+            "name": "Phahon Yothin 24",
+            "connections": [
+              { "to": "N11", "distance": 1 },
+              { "to": "N9", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N9",
+            "name": "Phahon Yothin",
+            "connections": [
+              { "to": "N10", "distance": 2 },
+              { "to": "N8", "distance": 3 }
+            ]
+          },
+          {
             "id": "N8",
             "name": "Mo-Chit",
             "connections": [
-              { "to": "N7", "distance": 1.4 },
-              { "to": "BL2", "distance": 0.3 }
+              { "to": "N9", "distance": 3 },
+              { "to": "N7", "distance": 1 }
             ]
           },
           {
             "id": "N7",
             "name": "Saphan-Khwai",
             "connections": [
-              { "to": "N8", "distance": 1.3 },
-              { "to": "N5", "distance": 1.1 }
+              { "to": "N8", "distance": 1 },
+              { "to": "N5", "distance": 3 }
             ]
           },
           {
             "id": "N5",
             "name": "Ari",
             "connections": [
-              { "to": "N7", "distance": 1.1 }
+              { "to": "N7", "distance": 3 },
+              { "to": "N4", "distance": 1 }
+            ]
+          },
+          {
+            "id": "N4",
+            "name": "Sanam Pao",
+            "connections": [
+              { "to": "N5", "distance": 1 },
+              { "to": "N3", "distance": 3 }
+            ]
+          },
+          {
+            "id": "N3",
+            "name": "Victory Monument",
+            "connections": [
+              { "to": "N4", "distance": 3 },
+              { "to": "N2", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N2",
+            "name": "Phaya Thai",
+            "connections": [
+              { "to": "N3", "distance": 2 },
+              { "to": "N1", "distance": 2 }
+            ]
+          },
+          {
+            "id": "N1",
+            "name": "Ratchathewi",
+            "connections": [
+              { "to": "N2", "distance": 2 },
+              { "to": "CEN", "distance": 2 }
+            ]
+          },
+          {
+            "id": "CEN",
+            "name": "Siam",
+            "connections": [
+              { "to": "N1", "distance": 2 },
+              { "to": "E1", "distance": 2 }
+            ]
+          },
+          {
+            "id": "E1",
+            "name": "Chit Lom",
+            "connections": [
+              { "to": "CEN", "time": 2 },
+              { "to": "E2", "time": 2 }
+            ]
+          },
+          {
+            "id": "E2",
+            "name": "Phloen Chit",
+            "connections": [
+              { "to": "E1", "time": 2 },
+              { "to": "E3", "time": 2 }
+            ]
+          },
+          {
+            "id": "E3",
+            "name": "Nana",
+            "connections": [
+              { "to": "E2", "time": 2 },
+              { "to": "E4", "time": 1 }
+            ]
+          },
+          {
+            "id": "E4",
+            "name": "Asok",
+            "connections": [
+              { "to": "E3", "time": 1 },
+              { "to": "E5", "time": 2 }
+            ]
+          },
+          {
+            "id": "E5",
+            "name": "Phrom Phong",
+            "connections": [
+              { "to": "E4", "time": 2 },
+              { "to": "E6", "time": 2 }
+            ]
+          },
+          {
+            "id": "E6",
+            "name": "Thong Lo",
+            "connections": [
+              { "to": "E5", "time": 2 },
+              { "to": "E7", "time": 2 }
+            ]
+          },
+          {
+            "id": "E7",
+            "name": "Ekkamai",
+            "connections": [
+              { "to": "E6", "time": 2 },
+              { "to": "E8", "time": 2 }
+            ]
+          },
+          {
+            "id": "E8",
+            "name": "Phra Khanong",
+            "connections": [
+              { "to": "E7", "time": 2 },
+              { "to": "E9", "time": 2 }
+            ]
+          },
+          {
+            "id": "E9",
+            "name": "On Nut",
+            "connections": [
+              { "to": "E8", "time": 2 },
+              { "to": "E10", "time": 2 }
+            ]
+          },
+          {
+            "id": "E10",
+            "name": "Bang Chak",
+            "connections": [
+              { "to": "E9", "time": 2 },
+              { "to": "E11", "time": 1 }
+            ]
+          },
+          {
+            "id": "E11",
+            "name": "Punnawithi",
+            "connections": [
+              { "to": "E10", "time": 1 },
+              { "to": "E12", "time": 2 }
+            ]
+          },
+          {
+            "id": "E12",
+            "name": "Udom Suk",
+            "connections": [
+              { "to": "E11", "time": 2 },
+              { "to": "E13", "time": 2 }
+            ]
+          },
+          {
+            "id": "E13",
+            "name": "Bang Na",
+            "connections": [
+              { "to": "E12", "time": 2 },
+              { "to": "E14", "time": 2 }
+            ]
+          },
+          {
+            "id": "E14",
+            "name": "Bearing",
+            "connections": [
+              { "to": "E13", "time": 2 },
+              { "to": "E15", "time": 2 }
+            ]
+          },
+          {
+            "id": "E15",
+            "name": "Samrong",
+            "connections": [
+              { "to": "E14", "time": 2 },
+              { "to": "E16", "time": 1 }
+            ]
+          },
+          {
+            "id": "E16",
+            "name": "Pu Chao",
+            "connections": [
+              { "to": "E15", "time": 1 },
+              { "to": "E17", "time": 3 }
+            ]
+          },
+          {
+            "id": "E17",
+            "name": "Chang Erawan",
+            "connections": [
+              { "to": "E16", "time": 3 },
+              { "to": "E18", "time": 3 }
+            ]
+          },
+          {
+            "id": "E18",
+            "name": "Royal Thai Naval Academy",
+            "connections": [
+              { "to": "E17", "time": 3 },
+              { "to": "E19", "time": 1 }
+            ]
+          },
+          {
+            "id": "E19",
+            "name": "Pak Nam",
+            "connections": [
+              { "to": "E18", "time": 1 },
+              { "to": "E20", "time": 3 }
+            ]
+          },
+          {
+            "id": "E20",
+            "name": "Srinagarindra",
+            "connections": [
+              { "to": "E19", "time": 3 },
+              { "to": "E21", "time": 2 }
+            ]
+          },
+          {
+            "id": "E21",
+            "name": "Phraek Sa",
+            "connections": [
+              { "to": "E20", "time": 2 },
+              { "to": "E22", "time": 1 }
+            ]
+          },
+          {
+            "id": "E22",
+            "name": "Sai Luat",
+            "connections": [
+              { "to": "E21", "time": 1 },
+              { "to": "E23", "time": 2 }
+            ]
+          },
+          {
+            "id": "E23",
+            "name": "Kheha",
+            "connections": [
+              { "to": "E22", "time": 2 }
             ]
           }
         ]
