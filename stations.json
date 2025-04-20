@@ -62,9 +62,11 @@
           {
             "id": "N17",
             "name": "Wat-Phra-Sri-Mahathat",
+            "interchange": true,
             "connections": [
               { "to": "N18", "distance": 2 },
-              { "to": "N16", "distance": 2 }
+              { "to": "N16", "distance": 2 },
+              { "to": "PK16", "distance": 1 , "type": "interchange", "line": "MRT_PINK" }
             ]
           },
           {
@@ -125,18 +127,22 @@
           },
           {
             "id": "N9",
-            "name": "Phahon-Yothin",
+            "name": "Ha-Yaek-Lat-Phrao",
+            "interchange": true,
             "connections": [
               { "to": "N10", "distance": 2 },
-              { "to": "N8", "distance": 3 }
+              { "to": "N8", "distance": 3 },
+              { "to": "BL14", "distance": 5 , "type": "interchange" , "line": "MRT_BLUE" }
             ]
           },
           {
             "id": "N8",
             "name": "Mo-Chit",
+            "interchange": true,
             "connections": [
               { "to": "N9", "distance": 3 },
-              { "to": "N7", "distance": 1 }
+              { "to": "N7", "distance": 1 },
+              { "to": "BL13", "distance": 5 , "type": "interchange" , "line": "MRT_BLUE" }
             ]
           },
           {
@@ -174,9 +180,11 @@
           {
             "id": "N2",
             "name": "Phaya-Thai",
+            "interchange": true,
             "connections": [
               { "to": "N3", "distance": 2 },
-              { "to": "N1", "distance": 2 }
+              { "to": "N1", "distance": 2 },
+              { "to": "A8", "distance": 4 , "type": "interchange" , "line": "ARL" }
             ]
           },
           {
@@ -184,12 +192,13 @@
             "name": "Ratchathewi",
             "connections": [
               { "to": "N2", "distance": 2 },
-              { "to": "CEN", "distance": 2 }
+              { "to": "CEN", "distance": 2 , "type" : "interchange"}
             ]
           },
           {
             "id": "CEN",
             "name": "Siam",
+            "interchange": true,
             "connections": [
               { "to": "N1", "distance": 2 },
               { "to": "E1", "distance": 2 }
@@ -199,7 +208,7 @@
             "id": "E1",
             "name": "Chit-Lom",
             "connections": [
-              { "to": "CEN", "time": 2 },
+              { "to": "CEN", "time": 2 , "type" : "interchange"},
               { "to": "E2", "time": 2 }
             ]
           },
@@ -222,9 +231,11 @@
           {
             "id": "E4",
             "name": "Asok",
+            "interchange": true,
             "connections": [
               { "to": "E3", "time": 1 },
-              { "to": "E5", "time": 2 }
+              { "to": "E5", "time": 2 },
+              { "to": "BL22", "time": 3 , "type": "interchange" , "line": "MRT_BLUE" }
             ]
           },
           {
@@ -310,9 +321,11 @@
           {
             "id": "E15",
             "name": "Samrong",
+            "interchange": true,
             "connections": [
               { "to": "E14", "time": 2 },
-              { "to": "E16", "time": 1 }
+              { "to": "E16", "time": 1 },
+              { "to": "YL23", "time": 1 , "type": "interchange" , "line": "MRT_YELLOW" }
             ]
           },
           {
@@ -388,12 +401,14 @@
             "id": "W1",
             "name": "National-Stadium",
             "connections": [
-              { "to": "S1", "distance": 1 }
+              { "to": "S1", "distance": 1 },
+              { "to": "CEN", "distance": 1 , "type" : "interchange"}
             ]
           },
           {
             "id": "CEN",
-            "name": "Ratchadamri",
+            "name": "Siam",
+            "interchange": true,
             "connections": [
               { "to": "W1", "distance": 1 },
               { "to": "S1", "distance": 3 }
@@ -403,16 +418,18 @@
             "id": "S1",
             "name": "Ratchadamri",
             "connections": [
-              { "to": "CEN", "distance": 3 },
+              { "to": "CEN", "distance": 3 , "type" : "interchange"},
               { "to": "S2", "distance": 3 }
             ]
           },
           {
             "id": "S2",
             "name": "Sala-Daeng",
+            "interchange": true,
             "connections": [
               { "to": "S1", "distance": 3 },
-              { "to": "S3", "distance": 2 }
+              { "to": "S3", "distance": 2 },
+              { "to": "BL26", "distance": 4 , "type": "interchange" , "line": "MRT_BLUE" }
             ]
           },
           {
@@ -450,9 +467,11 @@
           {
             "id": "S7",
             "name": "Krung-Thon-Buri",
+            "interchange": true,
             "connections": [
               { "to": "S6", "time": 3 },
-              { "to": "S8", "time": 1 }
+              { "to": "S8", "time": 1 },
+              { "to": "G1", "time": 1 , "type": "interchange" , "line": "GOLD_LINE" }
             ]
           },
           {
@@ -490,8 +509,10 @@
           {
             "id": "S12",
             "name": "Bang-Wa",
+            "interchange": true,
             "connections": [
-              { "to": "S11", "time": 2 }
+              { "to": "S11", "time": 2 },
+              { "to": "BL34", "time": 1 , "type": "interchange" , "line": "MRT_BLUE" }
             ]
           }
         ]
@@ -518,8 +539,10 @@
           {
             "id": "G1",
             "name": "Krung-Thon-Buri",
+            "interchange": true,
             "connections": [
-              { "to": "G2", "distance": 2 }
+              { "to": "G2", "distance": 2 },
+              { "to": "S7", "distance": 1 , "type" : "interchange", "line": "BTS_SILOM" }
             ]
           }
         ]
@@ -596,7 +619,7 @@
       },
       {
         "name": "MRT_YELLOW",
-        "color": "lightred",
+        "color": "yellow",
         "stations": [
           {
             "id": "YL01",
