@@ -631,20 +631,150 @@
           }
         ]
       },
-      {
-        "name": "MRT_PURPLE",
-        "color": "purple",
-        "stations": [
-          {
-            "id": "PP6",
-            "name": "Tao-Poon",
-            "connections": [
-              { "to": "???", "distance": "" },
-              { "to": "???", "distance": "" }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+     {
+      "name": "MRT_PURPLE",
+      "color": "purple",
+      "stations": [
+        {
+          "id": "PP01",
+          "name": "Khlong-Bang-Phai",
+          "connections": [
+            { "to": "PP02", "time": 2 }
+          ]
+        },
+        {
+          "id": "PP02",
+          "name": "Talad-Bang-Yai",
+          "connections": [
+            { "to": "PP01", "time": 2 },
+            { "to": "PP03", "time": 2 }
+          ]
+        },
+        {
+          "id": "PP03",
+          "name": "Sam-Yaek-Bang-Yai",
+          "connections": [
+            { "to": "PP02", "time": 2 },
+            { "to": "PP04", "time": 1.5 }
+          ]
+        },
+        {
+          "id": "PP04",
+          "name": "Bang-Phlu",
+          "connections": [
+            { "to": "PP03", "time": 1.5 },
+            { "to": "PP05", "time": 1 }
+          ]
+        },
+        {
+          "id": "PP05",
+          "name": "Bang-Rak-Yai",
+          "connections": [
+            { "to": "PP04", "time": 1 },
+            { "to": "PP06", "time": 1.5 }
+          ]
+        },
+        {
+          "id": "PP06",
+          "name": "Bang-Rak-Noi-Tha-It",
+          "connections": [
+            { "to": "PP05", "time": 1.5 },
+            { "to": "PP07", "time": 2 }
+          ]
+        },
+        {
+          "id": "PP07",
+          "name": "Sai-Ma",
+          "connections": [
+            { "to": "PP06", "time": 2 },
+            { "to": "PP08", "time": 2 }
+          ]
+        },
+        {
+          "id": "PP08",
+          "name": "Phra-Nang-Klao-Bridge",
+          "connections": [
+            { "to": "PP07", "time": 2 },
+            { "to": "PP09", "time": 3 }
+          ]
+        },
+        {
+          "id": "PP09",
+          "name": "Yaek-Nonthaburi-1",
+          "connections": [
+            { "to": "PP08", "time": 3 },
+            { "to": "PP10", "time": 1.5 }
+          ]
+        },
+        {
+          "id": "PP10",
+          "name": "Bang-Krasor",
+          "connections": [
+            { "to": "PP09", "time": 1.5 },
+            { "to": "PP11", "time": 2 }
+          ]
+        },
+        {
+          "id": "PP11",
+          "name": "Nonthaburi-Civic-Center",
+          "connections": [
+            { "to": "PP10", "time": 2 },
+            { "to": "PP12", "time": 2 }
+          ]
+        },
+        {
+          "id": "PP12",
+          "name": "Ministry-of-Public-Health",
+          "connections": [
+            { "to": "PP11", "time": 2 },
+            { "to": "PP13", "time": 2 }
+          ]
+        },
+        {
+          "id": "PP13",
+          "name": "Yaek-Tiwanon",
+          "connections": [
+            { "to": "PP12", "time": 2 },
+            { "to": "PP14", "time": 1.5 }
+          ]
+        },
+        {
+          "id": "PP14",
+          "name": "Wong-Sawang",
+          "connections": [
+            { "to": "PP13", "time": 1.5 },
+            { "to": "PP15", "time": 2 }
+          ]
+        },
+        {
+          "id": "PP15",
+          "name": "Bang-Son",
+          "interchange": true,
+          "connections": [
+            { "to": "PP14", "time": 2 },
+            { "to": "PP16", "time": 2 },
+            { 
+              "to": "RW02", 
+              "time": 5,
+              "type": "interchange",
+              "line": "SRT_RED"
+            }
+          ]
+        },
+        {
+          "id": "PP16",
+          "name": "Tao-Poon",
+          "interchange": true,
+          "connections": [
+            { "to": "PP15", "time": 2 },
+            { 
+              "to": "BL10", 
+              "time": 3,
+              "type": "interchange",
+              "line": "MRT_BLUE"
+            }
+          ]
+        }
+      ]
+    }
   
