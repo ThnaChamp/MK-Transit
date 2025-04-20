@@ -636,11 +636,129 @@
         "color": "purple",
         "stations": [
           {
-            "id": "PP6",
-            "name": "Tao-Poon",
+            "id": "PP01",
+            "name": "Khlong Bang Phai",
             "connections": [
-              { "to": "???", "distance": "" },
-              { "to": "???", "distance": "" }
+              { "to": "PP02", "distance": 1.3 }
+            ]
+          },
+          {
+            "id": "PP02",
+            "name": "Talad Bang Yai",
+            "connections": [
+              { "to": "PP03", "distance": 1.4 },
+              { "to": "PP01", "distance": 1.3 }
+            ]
+          },
+          {
+            "id": "PP03",
+            "name": "Sam Yaek Bang Yai",
+            "connections": [
+              { "to": "PP04", "distance": 1.1 },
+              { "to": "PP02", "distance": 1.4 }
+            ]
+          },
+          {
+            "id": "PP04",
+            "name": "Bang Phlu",
+            "connections": [
+              { "to": "PP05", "distance": 0.9 },
+              { "to": "PP03", "distance": 1.1 }
+            ]
+          },
+          {
+            "id": "PP05",
+            "name": "Bang Rak Yai",
+            "connections": [
+              { "to": "PP06", "distance": 1.0 },
+              { "to": "PP04", "distance": 0.9 }
+            ]
+          },
+          {
+            "id": "PP06",
+            "name": "Bang Rak Noi Tha It",
+            "connections": [
+              { "to": "PP07", "distance": 1.5 },
+              { "to": "PP05", "distance": 1.0 }
+            ]
+          },
+          {
+            "id": "PP07",
+            "name": "Sai Ma",
+            "connections": [
+              { "to": "PP08", "distance": 1.3 },
+              { "to": "PP06", "distance": 1.5 }
+            ]
+          },
+          {
+            "id": "PP08",
+            "name": "Phra Nang Klao Bridge",
+            "connections": [
+              { "to": "PP09", "distance": 1.8 },
+              { "to": "PP07", "distance": 1.3 }
+            ]
+          },
+          {
+            "id": "PP09",
+            "name": "Yaek Nonthaburi 1",
+            "connections": [
+              { "to": "PP10", "distance": 1.1 },
+              { "to": "PP08", "distance": 1.8 }
+            ]
+          },
+          {
+            "id": "PP10",
+            "name": "Bang Krasor",
+            "connections": [
+              { "to": "PP11", "distance": 1.4 },
+              { "to": "PP09", "distance": 1.1 }
+            ]
+          },
+          {
+            "id": "PP11",
+            "name": "Nonthaburi Civic Center",
+            "connections": [
+              { "to": "PP12", "distance": 1.2 },
+              { "to": "PP10", "distance": 1.4 }
+            ]
+          },
+          {
+            "id": "PP12",
+            "name": "Ministry of Public Health",
+            "connections": [
+              { "to": "PP13", "distance": 1.3 },
+              { "to": "PP11", "distance": 1.2 }
+            ]
+          },
+          {
+            "id": "PP13",
+            "name": "Yaek Tiwanon",
+            "connections": [
+              { "to": "PP14", "distance": 1.0 },
+              { "to": "PP12", "distance": 1.3 }
+            ]
+          },
+          {
+            "id": "PP14",
+            "name": "Wong Sawang",
+            "connections": [
+              { "to": "PP15", "distance": 1.5 },
+              { "to": "PP13", "distance": 1.0 }
+            ]
+          },
+          {
+            "id": "PP15",
+            "name": "Bang Son",
+            "connections": [
+              { "to": "PP16", "distance": 1.2 },
+              { "to": "PP14", "distance": 1.5 }
+            ]
+          },
+          {
+            "id": "PP16",
+            "name": "Tao Poon",
+            "connections": [
+              { "to": "PP15", "distance": 1.2 }
             ]
           }
         ]
