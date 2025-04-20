@@ -717,9 +717,11 @@
         {
           "id": "PP11",
           "name": "Nonthaburi-Civic-Center",
+          "interchange": true,
           "connections": [
             { "to": "PP10", "time": 2 },
-            { "to": "PP12", "time": 2 }
+            { "to": "PP12", "time": 2 },
+            { "to": "PK01", "time": 5 , "type": "interchange" , "line": "MRT_PINK"}
           ]
         },
         {
@@ -753,12 +755,7 @@
           "connections": [
             { "to": "PP14", "time": 2 },
             { "to": "PP16", "time": 2 },
-            { 
-              "to": "RW02", 
-              "time": 5,
-              "type": "interchange",
-              "line": "SRT_RED"
-            }
+            { "to": "RW02", "time": 5 , "type": "interchange" , "line": "SRT_RED"}
           ]
         },
         {
@@ -767,14 +764,11 @@
           "interchange": true,
           "connections": [
             { "to": "PP15", "time": 2 },
-            { 
-              "to": "BL10", 
-              "time": 3,
-              "type": "interchange",
-              "line": "MRT_BLUE"
-            }
+            { "to": "BL10", "time": 3 , "type": "interchange" , "line": "MRT_BLUE"}
           ]
         }
       ]
     }
+  ]
+}
   
