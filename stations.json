@@ -631,140 +631,156 @@
           }
         ]
       },
-     {
-      "name": "MRT_PURPLE",
-      "color": "purple",
+     BLUE"
+            }
+          ]
+        },
+        {
+          "id": "A07",
+          "name": "Ratchaprarop",
+          "connections": [
+            { "to": "A08", "time": 2 },
+            { "to": "A06", "time": 2 }
+          ]
+        },
+        {
+          "id": "A08",
+          "name": "Phaya-Thai",
+          "interchange": true,
+          "connections": [
+            { "to": "A07", "time": 2 },
+            {
+              "to": "N02",
+              "time": 2,
+              "type": "interchange",
+              "line": "BTS_SUKHUMVIT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SRT_RED",
+      "color": "red",
       "stations": [
         {
-          "id": "PP01",
-          "name": "Khlong-Bang-Phai",
+          "id": "RN01",
+          "name": "Rangsit",
           "connections": [
-            { "to": "PP02", "time": 2 }
+            { "to": "RN02", "time": 2 }
           ]
         },
         {
-          "id": "PP02",
-          "name": "Talad-Bang-Yai",
+          "id": "RN02",
+          "name": "Lak-Hok",
           "connections": [
-            { "to": "PP01", "time": 2 },
-            { "to": "PP03", "time": 2 }
+            { "to": "RN03", "time": 2 },
+            { "to": "RN01", "time": 2 }
           ]
         },
         {
-          "id": "PP03",
-          "name": "Sam-Yaek-Bang-Yai",
+          "id": "RN03",
+          "name": "Don-Mueang",
           "connections": [
-            { "to": "PP02", "time": 2 },
-            { "to": "PP04", "time": 1.5 }
+            { "to": "RW04", "time": 2 },
+            { "to": "RW02", "time": 2 }
           ]
         },
         {
-          "id": "PP04",
-          "name": "Bang-Phlu",
+          "id": "RN04",
+          "name": "Kan-Kheha",
           "connections": [
-            { "to": "PP03", "time": 1.5 },
-            { "to": "PP05", "time": 1 }
+            { "to": "RW05", "time": 3 },
+            { "to": "RW03", "time": 2 }
           ]
         },
         {
-          "id": "PP05",
-          "name": "Bang-Rak-Yai",
-          "connections": [
-            { "to": "PP04", "time": 1 },
-            { "to": "PP06", "time": 1.5 }
-          ]
-        },
-        {
-          "id": "PP06",
-          "name": "Bang-Rak-Noi-Tha-It",
-          "connections": [
-            { "to": "PP05", "time": 1.5 },
-            { "to": "PP07", "time": 2 }
-          ]
-        },
-        {
-          "id": "PP07",
-          "name": "Sai-Ma",
-          "connections": [
-            { "to": "PP06", "time": 2 },
-            { "to": "PP08", "time": 2 }
-          ]
-        },
-        {
-          "id": "PP08",
-          "name": "Phra-Nang-Klao-Bridge",
-          "connections": [
-            { "to": "PP07", "time": 2 },
-            { "to": "PP09", "time": 3 }
-          ]
-        },
-        {
-          "id": "PP09",
-          "name": "Yaek-Nonthaburi-1",
-          "connections": [
-            { "to": "PP08", "time": 3 },
-            { "to": "PP10", "time": 1.5 }
-          ]
-        },
-        {
-          "id": "PP10",
-          "name": "Bang-Krasor",
-          "connections": [
-            { "to": "PP09", "time": 1.5 },
-            { "to": "PP11", "time": 2 }
-          ]
-        },
-        {
-          "id": "PP11",
-          "name": "Nonthaburi-Civic-Center",
+          "id": "RN05",
+          "name": "Lak-Si",
           "interchange": true,
           "connections": [
-            { "to": "PP10", "time": 2 },
-            { "to": "PP12", "time": 2 },
-            { "to": "PK01", "time": 5 , "type": "interchange" , "line": "MRT_PINK"}
+            { "to": "RN06", "time": 2 },
+            { "to": "RN04", "time": 3 },
+            {
+              "to": "PK04",
+              "time": 5,
+              "type": "interchange",
+              "line": "MRT_PINK"
+            }
           ]
         },
         {
-          "id": "PP12",
-          "name": "Ministry-of-Public-Health",
+          "id": "RN06",
+          "name": "Thung-Song-Hong",
           "connections": [
-            { "to": "PP11", "time": 2 },
-            { "to": "PP13", "time": 2 }
+            { "to": "RN07", "time": 2 },
+            { "to": "RN05", "time": 2 }
           ]
         },
         {
-          "id": "PP13",
-          "name": "Yaek-Tiwanon",
+          "id": "RN07",
+          "name": "Bang-Khen",
           "connections": [
-            { "to": "PP12", "time": 2 },
-            { "to": "PP14", "time": 1.5 }
+            { "to": "RN08", "time": 2 },
+            { "to": "RN06", "time": 2 }
           ]
         },
         {
-          "id": "PP14",
-          "name": "Wong-Sawang",
+          "id": "RN08",
+          "name": "Wat-Samian-Nari",
           "connections": [
-            { "to": "PP13", "time": 1.5 },
-            { "to": "PP15", "time": 2 }
+            { "to": "RW09", "time": 2 },
+            { "to": "RW07", "time": 2 }
           ]
         },
         {
-          "id": "PP15",
+          "id": "RN09",
+          "name": "Chatuchak",
+          "interchange": true,
+          "connections": [
+            { "to": "RW10", "time": 2 },
+            { "to": "RW08", "time": 2 }
+          ]
+        },
+        {
+          "id": "RN10",
+          "name": "Krung-Thep-Aphiwat",
+          "interchange": true,
+          "connections": [
+            { "to": "RN11", "time": 2 },
+            { "to": "RN09", "time": 2 },
+            {
+              "to": "BL11",
+              "time": 3,
+              "type": "interchange",
+              "line": "MRT_BLUE"
+            }
+            
+          ]
+        },
+        {
+          "id": "RN11",
           "name": "Bang-Son",
-          "interchange": true,
+          "interchange" :true,
           "connections": [
-            { "to": "PP14", "time": 2 },
-            { "to": "PP16", "time": 2 },
-            { "to": "RW02", "time": 5 , "type": "interchange" , "line": "SRT_RED"}
+            { "to": "RN12", "time": 2 },
+            { "to": "RN10", "time": 2 },
+            {"to":"PP015","time": 3,"type":"interchange","line":"MRT_PURPLE"
           ]
         },
         {
-          "id": "PP16",
-          "name": "Tao-Poon",
-          "interchange": true,
+          "id": "RN12",
+          "name": "Bang-Bamru",
           "connections": [
-            { "to": "PP15", "time": 2 },
-            { "to": "BL10", "time": 3 , "type": "interchange" , "line": "MRT_BLUE"}
+            { "to": "RN13", "time": 2 },
+            { "to": "RN11", "time": 2 }
+          ]
+        },
+        {
+          "id": "RN13",
+          "name": "Taling-Chan",
+          "connections": [
+            { "to": "RN12", "time": 2 }
           ]
         }
       ]
