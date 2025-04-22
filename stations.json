@@ -548,15 +548,125 @@
         ]
       },
       {
-        "name": "CT",
+        "name": "SRT_RED",
         "color": "red",
         "stations": [
           {
-            "id": "RN02",
-            "name": "Chatuchak",
+            "id": "RN01",
+            "name": "Rangsit",
             "connections": [
-              { "to": "???", "distance": "" },
-              { "to": "???", "distance": "" }
+              { "to": "RN02", "time": 2 }
+            ]
+          },
+          {
+            "id": "RN02",
+            "name": "Lak-Hok",
+            "connections": [
+              { "to": "RN03", "time": 2 },
+              { "to": "RN01", "time": 2 }
+            ]
+          },
+          {
+            "id": "RN03",
+            "name": "Don-Mueang",
+            "connections": [
+              { "to": "RN04", "time": 2 },
+              { "to": "RN02", "time": 2 }
+            ]
+          },
+          {
+            "id": "RN04",
+            "name": "Kan-Kheha",
+            "connections": [
+              { "to": "RN05", "time": 3 },
+              { "to": "RN03", "time": 2 }
+            ]
+          },
+          {
+            "id": "RN05",
+            "name": "Lak-Si",
+            "interchange": true,
+            "connections": [
+              { "to": "RN06", "time": 2 },
+              { "to": "RN04", "time": 3 },
+              { "to": "PK14", "time": 6, "type": "interchange", "line": "MRT_PINK" }
+            ]
+          },
+          {
+            "id": "RN06",
+            "name": "Thung-Song-Hong",
+            "connections": [
+              { "to": "RN07", "time": 2 },
+              { "to": "RN05", "time": 2 }
+            ]
+          },
+          {
+            "id": "RN07",
+            "name": "Bang-Khen",
+            "connections": [
+              { "to": "RN08", "time": 2 },
+              { "to": "RN06", "time": 2 }
+            ]
+          },
+          {
+            "id": "RN08",
+            "name": "Wat-Samian-Nari",
+            "connections": [
+              { "to": "RN09", "time": 2 },
+              { "to": "RN07", "time": 2 }
+            ]
+          },
+          {
+            "id": "RN09",
+            "name": "Chatuchak",
+            "interchange": true,
+            "connections": [
+              { "to": "RN10", "time": 2 },
+              { "to": "RN08", "time": 2 }
+            ]
+          },
+          {
+            "id": "RN10",
+            "name": "Krung-Thep-Aphiwat",
+            "interchange": true,
+            "connections": [
+              { "to": "RW01", "time": 5 },
+              { "to": "RN09", "time": 2 },
+              { "to": "BL11", "time": 3, "type": "interchange", "line": "MRT_BLUE" }
+            ]
+          },
+          {
+            "id": "RW01",
+            "name": "Krung-Thep-Aphiwat",
+            "interchange": true,
+            "connections": [
+              { "to": "RN10", "time": 5 },
+              { "to": "BL11", "time": 3, "type": "interchange", "line": "MRT_BLUE" }
+            ]
+          },
+          {
+            "id": "RW02",
+            "name": "Bang-Son",
+            "interchange": true,
+            "connections": [
+              { "to": "RW03", "time": 2 },
+              { "to": "RW01", "time": 5 },
+              {"to":  "PP14", "time": 3, "type": "interchange", "line": "MRT_PURPLE" }
+            ]
+          },
+          {
+            "id": "RW03",
+            "name": "Bang-Bamru",
+            "connections": [
+              { "to": "RW04", "time": 2 },
+              { "to": "RW02", "time": 2 }
+            ]
+          },
+          {
+            "id": "RW04",
+            "name": "Taling-Chan",
+            "connections": [
+              { "to": "RW03", "time": 2 }
             ]
           }
         ]
@@ -584,21 +694,77 @@
       },
       {
         "name": "ARL",
-        "color": "darkred",
+        "color": "airport",
         "stations": [
           {
-            "id": "A8",
-            "name": "Phaya-Thai",
+            "id": "A01",
+            "name": "Suvarnabhumi",
             "connections": [
-              { "to": "A7", "distance": 1.0 },
-              { "to": "N2", "distance": 0.2 }
+              { "to": "A02", "time": 7 }
             ]
           },
           {
-            "id": "A7",
+            "id": "A02",
+            "name": "Lat Krabang",
+            "connections": [
+              { "to": "A03", "time": 2 },
+              { "to": "A01", "time": 7 }
+            ]
+          },
+          {
+            "id": "A03",
+            "name": "Ban Thap Chang",
+            "connections": [
+              { "to": "A04", "time": 3 },
+              { "to": "A02", "time": 2 }
+            ]
+          },
+          {
+            "id": "A04",
+            "name": "Hua Mak",
+            "connections": [
+              { "to": "A05", "time": 3 },
+              { "to": "A03", "time": 3 }
+            ]
+          },
+          {
+            "id": "A05",
+            "name": "Ramkhamhaeng",
+            "connections": [
+              { "to": "A06", "time": 3 },
+              { "to": "A04", "time": 3 }
+            ]
+          },
+          {
+            "id": "A06",
+            "name": "Makkasan",
+            "interchange": true,
+            "connections": [
+              { "to": "A07", "time": 2 },
+              { "to": "A05", "time": 3 },
+              { "to": "BL22", "time": 5, "type": "interchange", "line": "MRT_BLUE" }
+            ]
+          },
+          {
+            "id": "A07",
             "name": "Ratchaprarop",
             "connections": [
-              { "to": "A8", "distance": 1.0 }
+              { "to": "A08", "time": 2 },
+              { "to": "A06", "time": 2 }
+            ]
+          },
+          {
+            "id": "A08",
+            "name": "Phaya Thai",
+            "interchange": true,
+            "connections": [
+              { "to": "A07", "time": 2 },
+              {
+                "to": "N02",
+                "time": 3,
+                "type": "interchange",
+                "line": "SUKHUMVIT"
+              }
             ]
           }
         ]
