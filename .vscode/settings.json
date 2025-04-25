@@ -1,6 +1,0 @@
-{
-    "java.project.referencedLibraries": [
-      "lib/gson-2.13.0.jar"
-    ],
-    "java.configuration.updateBuildConfiguration": "interactive"
-  }
