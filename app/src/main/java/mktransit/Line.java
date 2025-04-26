@@ -25,4 +25,3 @@ public class Line {
         return stations;
     }
 }
-

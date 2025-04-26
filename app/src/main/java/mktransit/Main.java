@@ -1,39 +1,46 @@
 package mktransit;
 
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.*;
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
         JsonReader reader = new JsonReader();
-        List<Line> lines = reader.loadJsonData(); // return List<Line> แทน
+        List<Line> lines = reader.loadJsonData();
 
-        VBox root = new VBox(10);
-        root.setStyle("-fx-padding: 20; -fx-alignment: center;");
+        VBox contentBox = new VBox(10);
+        contentBox.setStyle("-fx-padding: 20; -fx-alignment: top-left;");
 
         for (Line line : lines) {
-            Label lineLabel = new Label("Line: " + line.getName() + " (" + line.getColor() + ")");
-            root.getChildren().add(lineLabel);
+            Label lineLabel = new Label("🚈 Line: " + line.getName() + " (" + line.getColor() + ")");
+            contentBox.getChildren().add(lineLabel);
 
             for (Station station : line.getStations()) {
-                Label stationLabel = new Label("  Station: " + station.getName() + " (ID: " + station.getId() + ")");
-                root.getChildren().add(stationLabel);
+                Label stationLabel = new Label("  🏙 " + station.getName() + " (ID: " + station.getId() + ")");
+                contentBox.getChildren().add(stationLabel);
 
                 for (Connection conn : station.getConnections()) {
-                    Label connLabel = new Label("    → To: " + conn.getTo() + " (" + conn.getTime() + " min)");
-                    root.getChildren().add(connLabel);
+                    Label connLabel = new Label("    ↳ To: " + conn.getTo() + " (" + conn.getTime() + " min)");
+                    contentBox.getChildren().add(connLabel);
                 }
             }
         }
 
-        Scene scene = new Scene(root, 600, 600);
-        stage.setTitle("JSON Viewer");
+        // 💡 ใช้ ScrollPane ครอบ VBox
+        ScrollPane scrollPane = new ScrollPane(contentBox);
+        scrollPane.setFitToWidth(true); // ให้ขยายตามหน้ากว้าง
+        scrollPane.setStyle("-fx-padding: 10;");
+
+        Scene scene = new Scene(scrollPane, 800, 700);
+        stage.setTitle("Bangkok Transit Viewer");
         stage.setScene(scene);
         stage.show();
     }
@@ -42,4 +49,3 @@ public class Main extends Application {
         launch();
     }
 }
-
