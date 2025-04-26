@@ -7,12 +7,14 @@ public class Line {
     private String color;
     private List<Station> stations;
 
+    //Constructore
     public Line(String name, String color, List<Station> stations) {
         this.name = name;
         this.color = color;
         this.stations = stations;
     }
-
+    
+    //Method
     public String getName() {
         return name;
     }

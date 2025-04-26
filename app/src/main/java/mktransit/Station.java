@@ -5,7 +5,7 @@ import java.util.List;
 public class Station {
     private String id;
     private String name;
-    private boolean interchange;
+    private boolean interchange = false;
     private List<Connection> connections;
 
     public Station(String id, String name, boolean interchange, List<Connection> connections) {

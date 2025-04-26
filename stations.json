@@ -882,7 +882,7 @@
           },
           {
             "id": "BL19",
-            "name": "Thailand Cultural Centre",
+            "name": "Thailand-Cultural-Centre",
             "connections": [
               { "to": "BL18", "time": 3 },
               { "to": "BL20", "time": 2 }
@@ -1005,74 +1005,70 @@
         "color": "darkred",
         "stations": [
           {
-            "id": "A01",
+            "id": "A1",
             "name": "Suvarnabhumi",
             "connections": [
-              { "to": "A02", "time": 7 }
+              { "to": "A2", "time": 7 }
             ]
           },
           {
-            "id": "A02",
-            "name": "Lat Krabang",
+            "id": "A2",
+            "name": "Lat-Krabang",
             "connections": [
-              { "to": "A03", "time": 2 },
-              { "to": "A01", "time": 7 }
+              { "to": "A3", "time": 2 },
+              { "to": "A1", "time": 7 }
             ]
           },
           {
-            "id": "A03",
-            "name": "Ban Thap Chang",
+            "id": "A3",
+            "name": "Ban-Thap-Chang",
             "connections": [
-              { "to": "A04", "time": 3 },
-              { "to": "A02", "time": 2 }
+              { "to": "A4", "time": 3 },
+              { "to": "A2", "time": 2 }
             ]
           },
           {
-            "id": "A04",
-            "name": "Hua Mak",
+            "id": "A4",
+            "name": "Hua-Mak",
             "connections": [
-              { "to": "A05", "time": 3 },
-              { "to": "A03", "time": 3 }
+              { "to": "A5", "time": 3 },
+              { "to": "A3", "time": 3 },
+              { "to": "YL11", "time": 5 , "type": "interchange" , "line": "MRT_YELLOW" }
             ]
           },
           {
-            "id": "A05",
+            "id": "A5",
             "name": "Ramkhamhaeng",
             "connections": [
-              { "to": "A06", "time": 3 },
-              { "to": "A04", "time": 3 }
+              { "to": "A6", "time": 3 },
+              { "to": "A4", "time": 3 }
             ]
           },
           {
-            "id": "A06",
+            "id": "A6",
             "name": "Makkasan",
             "interchange": true,
             "connections": [
-              { "to": "A07", "time": 2 },
-              { "to": "A05", "time": 3 },
-              { "to": "BL22", "time": 5, "type": "interchange", "line": "MRT_BLUE" }
+              { "to": "A7", "time": 2 },
+              { "to": "A5", "time": 3 },
+              { "to": "BL21", "time": 5, "type": "interchange", "line": "MRT_BLUE" }
             ]
           },
           {
-            "id": "A07",
+            "id": "A7",
             "name": "Ratchaprarop",
             "connections": [
-              { "to": "A08", "time": 2 },
-              { "to": "A06", "time": 2 }
+              { "to": "A8", "time": 2 },
+              { "to": "A6", "time": 2 }
             ]
           },
           {
-            "id": "A08",
-            "name": "Phaya Thai",
+            "id": "A8",
+            "name": "Phaya-Thai",
             "interchange": true,
             "connections": [
-              { "to": "A07", "time": 2 },
-              {
-                "to": "N02",
-                "time": 3,
-                "type": "interchange",
-                "line": "BTS_SUKHUMVIT"
-              }
+              { "to": "A7", "time": 2 },
+              { "to": "N2", "time": 3, "type": "interchange", "line": "BTS_SUKHUMVIT"}
             ]
           }
         ]
