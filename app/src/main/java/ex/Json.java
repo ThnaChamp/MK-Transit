@@ -1,4 +1,4 @@
-package mktransit;
+package ex;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;

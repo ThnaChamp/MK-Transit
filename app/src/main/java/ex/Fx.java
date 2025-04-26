@@ -1,4 +1,4 @@
-package mktransit;
+package ex;
 
 // javaFX
 import javafx.application.Application;

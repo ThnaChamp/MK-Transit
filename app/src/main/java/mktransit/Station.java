@@ -3,8 +3,31 @@ package mktransit;
 import java.util.List;
 
 public class Station {
-    public String id;
-    public String name;
-    public List<Connection> connections;
-}
+    private String id;
+    private String name;
+    private boolean interchange;
+    private List<Connection> connections;
 
+    public Station(String id, String name, boolean interchange, List<Connection> connections) {
+        this.id = id;
+        this.name = name;
+        this.interchange = interchange;
+        this.connections = connections;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isInterchange() {
+        return interchange;
+    }
+
+    public List<Connection> getConnections() {
+        return connections;
+    }
+}
