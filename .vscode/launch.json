@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "mktransit.Main",
+            "projectName": "app"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "MK-Transit.Main",
+            "projectName": "app"
+        },
+        {
+            "type": "java",
+            "name": "Launch JavaFX",
+            "request": "launch",
+            "mainClass": "MK-Transit.Main",
+            "vmArgs": "--module-path ./lib --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}
