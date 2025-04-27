@@ -42,7 +42,8 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'mktransit.Main'
+    //mainClass = 'mktransit.Main'
+    mainClass = 'mktransit.GuiTest'
 }
 
 tasks.named('test') {

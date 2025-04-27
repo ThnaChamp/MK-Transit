@@ -1,6 +1,7 @@
 package mktransit;
 
 import java.util.List;
+import java.util.Map;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -16,7 +17,10 @@ public class Main extends Application {
         JsonReader reader = new JsonReader();
         reader.loadJsonData(); // แค่โหลด
 
-        List<Line> lines = reader.getLines(); // ดึงข้อมูลมาใช้
+        List<Line> lines = reader.getLines(); // ดึงข้อมูล Line
+        Map<String, Station> stationMap = reader.getStationMap(); // ดึงข้อมูล Station
+
+        Station SomeStation = stationMap.get("N8");
 
         VBox contentBox = new VBox(10);
         contentBox.setStyle("-fx-padding: 20; -fx-alignment: top-left;");
@@ -24,20 +28,28 @@ public class Main extends Application {
         if (lines.isEmpty()) {
             contentBox.getChildren().add(new Label("No data loaded."));
         } else {
-            for (Line line : lines) {
-                Label lineLabel = new Label("🚈 Line: " + line.getName() + " (" + line.getColor() + ")");
-                contentBox.getChildren().add(lineLabel);
+            // for (Line line : lines) {
+            // Label lineLabel = new Label("🚈 Line: " + line.getName() + " (" +
+            // line.getColor() + ")");
+            // contentBox.getChildren().add(lineLabel);
 
-                for (Station station : line.getStations()) {
-                    Label stationLabel = new Label("  🏙 " + station.getName() + " (ID: " + station.getId() + ")");
-                    contentBox.getChildren().add(stationLabel);
+            // for (Station station : line.getStations()) {
+            // Label stationLabel = new Label(" 🏙 " + station.getName() + " (ID: " +
+            // station.getId() + ")");
+            // contentBox.getChildren().add(stationLabel);
 
-                    for (Connection conn : station.getConnections()) {
-                        Label connLabel = new Label("    ↳ To: " + conn.getTo() + " (" + conn.getTime() + " min)");
-                        contentBox.getChildren().add(connLabel);
-                    }
-                }
-            }
+            // for (Connection conn : station.getConnections()) {
+            // Label connLabel = new Label(" ↳ To: " + conn.getTo() + " (" + conn.getTime()
+            // + " min)");
+            // contentBox.getChildren().add(connLabel);
+            // }
+            // }
+            // }
+
+            // Show N8
+            System.out.println(SomeStation.getName());
+            Label A = new Label("Station N8: " + SomeStation.getName());
+            contentBox.getChildren().add(A);
         }
 
         ScrollPane scrollPane = new ScrollPane(contentBox);

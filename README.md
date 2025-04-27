@@ -4,6 +4,7 @@ Mongkol-Transit
 วิธี Run 
 - รันผ่าน Terminal เท่านั้น
 - ถ้า error ลอง gradle clean -> gradle build -> gradle run
+- ถ้าไม่ได้ลอง gradlew run หรือ ./gradlew run
 - รันตรงไหนก็ได้ ล็อคใน รัน Main.java อย่างเดียว
 
 ไฟล์ที่สำคัญ
