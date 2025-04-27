@@ -8,4 +8,13 @@ public class PathFinder {
     public PathFinder(Map<String, Station> stationMap) {
         this.stationMap = stationMap;
     }
+
+    public PathResult findShortestPath(String startId, String endId) {
+        startId = startId.toUpperCase();
+        endId = endId.toUpperCase();
+
+        
+        // TODO: ยังไม่ได้ทำอะไร
+        return null;
+    }
 }

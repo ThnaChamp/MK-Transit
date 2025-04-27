@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
 
 public class GuiTest extends Application {
 
@@ -38,39 +38,35 @@ public class GuiTest extends Application {
         HBox root = new HBox();
 
         // ฝั่งซ้าย
-        Pane leftPane = new Pane();
-        // leftPane.setStyle("-fx-background-color: lightblue;");
-        leftPane.setPrefWidth(400);
+        StackPane leftPane = new StackPane(); // ใช้ StackPane เพราะจัดให้อยู่ตรงกลางได้ง่าย
+        leftPane.setPrefWidth(500);
 
-        Rectangle fakeMap = new Rectangle(400, 400, Color.LIGHTBLUE); // จำลองแผนที่ด้วยสี่เหลี่ยมสีฟ้า
-        leftPane.getChildren().add(fakeMap);
-        
+        // สร้าง Box ที่อยากให้อยู่กลาง
+        Rectangle map = new Rectangle(650, 650, Color.LIGHTGRAY); // อันนี้ไม่เต็มขนาดฝั่งซ้าย
+        map.widthProperty().bind(Bindings.min(leftPane.widthProperty().multiply(0.9), leftPane.heightProperty().multiply(0.9)));
+        map.heightProperty().bind(Bindings.min(leftPane.widthProperty().multiply(0.9), leftPane.heightProperty().multiply(0.9)));
+        leftPane.getChildren().add(map); // เอา rectangle ใส่ใน leftPane
+
         // ฝั่งขวา
-        VBox rightPane = new VBox();
-        rightPane.setStyle("-fx-background-color: lightgreen;");
+        VBox rightPane = new VBox(10);
         rightPane.setPrefWidth(200);
-        
-        // ข้างในขวา
-        Label topPart = new Label("Top part");
-        topPart.setStyle("-fx-background-color: lightcoral; -fx-alignment: center;");
-        Label bottomPart = new Label("Bottom part");
-        bottomPart.setStyle("-fx-background-color: lightyellow; -fx-alignment: center;");
-        
-        // บังคับให้มันขยาย
+        // rightPane.setStyle("-fx-background-color: lightgreen;");//BG Color
+
+        Label label1 = new Label("Start Station: ");
+        Label label2 = new Label("End Station: ");
+        rightPane.getChildren().addAll(label1, label2);
+
+        // บังคับให้ขยาย
         HBox.setHgrow(leftPane, Priority.ALWAYS);
         HBox.setHgrow(rightPane, Priority.ALWAYS);
-        
-        VBox.setVgrow(topPart, Priority.ALWAYS);
-        VBox.setVgrow(bottomPart, Priority.ALWAYS);
-        
-        // ใส่เนื้อหา
-        rightPane.getChildren().addAll(topPart, bottomPart);
+
+        // ใส่ทุกอย่างใน root
         root.getChildren().addAll(leftPane, rightPane);
-        
-        // scene
-        Scene scene = new Scene(root, 600, 400);
+
+        Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {
