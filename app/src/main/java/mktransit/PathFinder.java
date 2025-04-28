@@ -1,7 +1,10 @@
 package mktransit;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
@@ -30,24 +33,23 @@ public class PathFinder {
         times.put(startId, 0); // ให้ node เริ่มใช้เวลา 0 เพราะว่าเป็นจุดเริ่ม
         queue.add(new Node(startId, 0)); // ใส่ Id เริ่มต้นเข้าใน queue และเวลา เป็น 0
 
-        //Dijkstra 
-        while (!queue.isEmpty()) { //ทำจนกว่าใน queue จะหมด
-            Node current = queue.poll(); //เอาสถานีที่น้อยที่สุด ออกจาก queue
-            Station currentStation = stationMap.get(current.id); //เก็บ Value จาก Key, Value คือ ทั้ง Object 
+        // Dijkstra
+        while (!queue.isEmpty()) { // ทำจนกว่าใน queue จะหมด
+            Node current = queue.poll(); // เอาสถานีที่น้อยที่สุด ออกจาก queue
+            Station currentStation = stationMap.get(current.id); // เก็บ Value จาก Key, Value คือ ทั้ง Object
 
-            //ถ้าเจอจุดปลายทางให้หยุด
+            // ถ้าเจอจุดปลายทางให้หยุด
             if (current.id.equals(endId)) {
                 break;
             }
 
-
             for (Connection conn : currentStation.getConnections()) {
-                Station neighbor = stationMap.get(conn.getTo()); //neighbor เก็บ Id ที่ไปได้
-                if (neighbor == null) //ถ้าไม่เจอสถานี (สุดทาง) ข้าม Connection นี้ไป
+                Station neighbor = stationMap.get(conn.getTo()); // neighbor เก็บ Id ที่ไปได้
+                if (neighbor == null) // ถ้าไม่เจอสถานี (สุดทาง) ข้าม Connection นี้ไป
                     continue;
 
-                int newTime = times.get(current.id) + conn.getTime(); //เวลาก่อนหน้า + เวลาจากจุด ปัจจุบัน -> จุดถัดไป
-                if (newTime < times.get(neighbor.getId())) {
+                int newTime = times.get(current.id) + conn.getTime(); // เวลาก่อนหน้า + เวลาจากจุด ปัจจุบัน -> จุดถัดไป
+                if (newTime < times.get(neighbor.getId())) { 
                     times.put(neighbor.getId(), newTime);
                     previous.put(neighbor.getId(), current.id);
                     queue.add(new Node(neighbor.getId(), newTime));
@@ -55,7 +57,22 @@ public class PathFinder {
             }
         }
 
-        return null;
+        //ยังไม่เข้าใจ
+        List<String> path = new ArrayList<>();
+        String current = endId;
+        while (current != null) {
+            path.add(current);
+            current = previous.get(current);
+        }
+        Collections.reverse(path);
+
+        if (path.size() == 1 && !path.get(0).equals(startId)) {
+            return new PathResult(new ArrayList<>(), new ArrayList<>(), -1);
+        }
+
+        int totalTime = times.get(endId);
+
+        return new PathResult(path, new ArrayList<>(), totalTime);
     }
 
     private static class Node {
