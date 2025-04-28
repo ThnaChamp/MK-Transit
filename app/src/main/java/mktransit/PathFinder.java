@@ -22,7 +22,7 @@ public class PathFinder {
         endId = endId.toUpperCase();
 
         Map<String, Integer> times = new HashMap<>(); // เก็บเวลาจาก Id ปัจจุบัน -> Id อื่นๆ
-        Map<String, String> previous = new HashMap<>(); // เก็บ Id ก่อนหน้า Id ปัจจุบัน PriorityQueue<Node> queue = new
+        Map<String, String> previous = new HashMap<>(); // เก็บ Id ก่อนหน้า Id ปัจจุบัน
         PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(node -> node.time)); // จัดลำดับตามเวลาที่ใช้
                                                                                                      // (น้อยสุดก่อน)
         // ไล่ทุก Node
@@ -35,7 +35,7 @@ public class PathFinder {
 
         // Dijkstra
         while (!queue.isEmpty()) { // ทำจนกว่าใน queue จะหมด
-            Node current = queue.poll(); // เอาสถานีที่น้อยที่สุด ออกจาก queue
+            Node current = queue.poll(); // เอาสถานีที่น้อยที่สุด ออกจาก queue Ex. Start = N24 -> current = N24
             Station currentStation = stationMap.get(current.id); // เก็บ Value จาก Key, Value คือ ทั้ง Object
 
             // ถ้าเจอจุดปลายทางให้หยุด
@@ -49,15 +49,17 @@ public class PathFinder {
                     continue;
 
                 int newTime = times.get(current.id) + conn.getTime(); // เวลาก่อนหน้า + เวลาจากจุด ปัจจุบัน -> จุดถัดไป
-                if (newTime < times.get(neighbor.getId())) { 
-                    times.put(neighbor.getId(), newTime);
-                    previous.put(neighbor.getId(), current.id);
-                    queue.add(new Node(neighbor.getId(), newTime));
+
+                // เวลา 0 + เวลาที่ไปอีก Node < เวลาทีถูกกำหนดให้เป็น infinity
+                if (newTime < times.get(neighbor.getId())) {
+                    times.put(neighbor.getId(), newTime); // ใส่เวลาใหม่เข้าไป
+                    previous.put(neighbor.getId(), current.id); // Ex. N24 -> N23 (N23 , N24)
+                    queue.add(new Node(neighbor.getId(), newTime)); //ให้ Id ถัดไปเข้ามาอยู่ใน queue และใส่เวลาที่รวมจากเส้นทางก่อนเข้าไป
                 }
             }
         }
 
-        //ยังไม่เข้าใจ
+        // ยังไม่เข้าใจ
         List<String> path = new ArrayList<>();
         String current = endId;
         while (current != null) {
