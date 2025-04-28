@@ -20,8 +20,41 @@ public class PathFinder {
 
         Map<String, Integer> times = new HashMap<>(); // เก็บเวลาจาก Id ปัจจุบัน -> Id อื่นๆ
         Map<String, String> previous = new HashMap<>(); // เก็บ Id ก่อนหน้า Id ปัจจุบัน PriorityQueue<Node> queue = new
-        PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(node -> node.time)); //
-        // TODO: ยังไม่ได้ทำอะไร
+        PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(node -> node.time)); // จัดลำดับตามเวลาที่ใช้
+                                                                                                     // (น้อยสุดก่อน)
+        // ไล่ทุก Node
+        for (String id : stationMap.keySet()) {
+            times.put(id, Integer.MAX_VALUE); // ใส่เวลาของ Id ปัจจุบัน -> Id ถัดไป เป็น Infinity
+            previous.put(id, null); // ยังไม่มีสถานีก่อนหน้า
+        }
+        times.put(startId, 0); // ให้ node เริ่มใช้เวลา 0 เพราะว่าเป็นจุดเริ่ม
+        queue.add(new Node(startId, 0)); // ใส่ Id เริ่มต้นเข้าใน queue และเวลา เป็น 0
+
+        //Dijkstra 
+        while (!queue.isEmpty()) { //ทำจนกว่าใน queue จะหมด
+            Node current = queue.poll(); //เอาสถานีที่น้อยที่สุด ออกจาก queue
+            Station currentStation = stationMap.get(current.id); //เก็บ Value จาก Key, Value คือ ทั้ง Object 
+
+            //ถ้าเจอจุดปลายทางให้หยุด
+            if (current.id.equals(endId)) {
+                break;
+            }
+
+
+            for (Connection conn : currentStation.getConnections()) {
+                Station neighbor = stationMap.get(conn.getTo()); //neighbor เก็บ Id ที่ไปได้
+                if (neighbor == null) //ถ้าไม่เจอสถานี (สุดทาง) ข้าม Connection นี้ไป
+                    continue;
+
+                int newTime = times.get(current.id) + conn.getTime(); //เวลาก่อนหน้า + เวลาจากจุด ปัจจุบัน -> จุดถัดไป
+                if (newTime < times.get(neighbor.getId())) {
+                    times.put(neighbor.getId(), newTime);
+                    previous.put(neighbor.getId(), current.id);
+                    queue.add(new Node(neighbor.getId(), newTime));
+                }
+            }
+        }
+
         return null;
     }
 
