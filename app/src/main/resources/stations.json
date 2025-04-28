@@ -201,7 +201,9 @@
           "interchange": true,
           "connections": [
             { "to": "N1", "time": 2 },
-            { "to": "E1", "time": 2 }
+            { "to": "E1", "time": 2 },
+            { "to": "W1", "time": 1 , "line": "BTS_SILOM" },
+            { "to": "S1", "time": 3 , "line": "BTS_SILOM" }
           ]
         },
         {
@@ -401,7 +403,6 @@
           "id": "W1",
           "name": "National-Stadium",
           "connections": [
-            { "to": "S1", "time": 1 },
             { "to": "CEN", "time": 1 , "type" : "interchange"}
           ]
         },
@@ -411,7 +412,9 @@
           "interchange": true,
           "connections": [
             { "to": "W1", "time": 1 },
-            { "to": "S1", "time": 3 }
+            { "to": "S1", "time": 3 },
+            { "to": "N1", "time": 2 , "line": "BTS_SUKHUMVIT" },
+            { "to": "E1", "time": 2 , "line": "BTS_SUKHUMVIT" }
           ]
         },
         {
