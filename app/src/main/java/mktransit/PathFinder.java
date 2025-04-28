@@ -54,27 +54,50 @@ public class PathFinder {
                 if (newTime < times.get(neighbor.getId())) {
                     times.put(neighbor.getId(), newTime); // ใส่เวลาใหม่เข้าไป
                     previous.put(neighbor.getId(), current.id); // Ex. N24 -> N23 (N23 , N24)
-                    queue.add(new Node(neighbor.getId(), newTime)); //ให้ Id ถัดไปเข้ามาอยู่ใน queue และใส่เวลาที่รวมจากเส้นทางก่อนเข้าไป
+                    queue.add(new Node(neighbor.getId(), newTime)); // ให้ Id ถัดไปเข้ามาอยู่ใน queue
+                                                                    // และใส่เวลาที่รวมจากเส้นทางก่อนเข้าไป
                 }
             }
         }
 
-        // ยังไม่เข้าใจ
         List<String> path = new ArrayList<>();
         String current = endId;
+
+        // Loop ย้อนกลับ
         while (current != null) {
-            path.add(current);
-            current = previous.get(current);
+            path.add(current); // ใส่สถานีเข้าไปใน path
+            current = previous.get(current); // กลับไปที่สถานีก่อนหน้า
         }
-        Collections.reverse(path);
+        Collections.reverse(path); // พลิก
 
+        // Check ว่ามีแค่สถานีเดียว และสถานีที่มีไม่ได้เป็นสถานีเริ่มต้น
         if (path.size() == 1 && !path.get(0).equals(startId)) {
-            return new PathResult(new ArrayList<>(), new ArrayList<>(), -1);
+            return new PathResult(new ArrayList<>(), new ArrayList<>(), -1); // Return Path ว่างๆไป
         }
 
-        int totalTime = times.get(endId);
+        int totalTime = times.get(endId); // เวลารวม
 
-        return new PathResult(path, new ArrayList<>(), totalTime);
+        List<String> importantSteps = findImportantSteps(path);
+
+        return new PathResult(path, importantSteps, totalTime); // Return (เส้นทาง,บอกจุด Interchange ,เวลารวม)
+                                                                // เพราะยังไม่ผ่าน Interchange
+    }
+
+    //Method สำหรับหาจุด Interrchange
+    private List<String> findImportantSteps(List<String> fullPath) {
+        List<String> importantSteps = new ArrayList<>();
+
+        for (String stationId : fullPath) {
+            Station station = stationMap.get(stationId);
+            if (station == null)
+                continue;
+
+            if (station.isInterchange()) {
+                importantSteps.add(stationId);
+            }
+        }
+
+        return importantSteps;
     }
 
     private static class Node {

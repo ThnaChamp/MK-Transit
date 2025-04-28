@@ -325,7 +325,7 @@
           "connections": [
             { "to": "E14", "time": 2 },
             { "to": "E16", "time": 1 },
-            { "to": "YL23", "time": 1 , "type": "interchange" , "line": "MRT_YELLOW" }
+            { "to": "YL23", "time": 10 , "type": "interchange" , "line": "MRT_YELLOW" }
           ]
         },
         {
@@ -908,7 +908,7 @@
         },
         {
           "id": "BL22",
-          "name": "BTS_SUKHUMVIT",
+          "name": "Sukhumvit",
           "interchange": true,
           "connections": [
             { "to": "BL21", "time": 2 },
@@ -1512,7 +1512,7 @@
           "interchange": true,
           "connections": [
             { "to": "YL22", "time": 2 },
-            { "to": "E15", "time": 6 , "type": "interchange" , "line": "BTS_SUKHUMVIT" }
+            { "to": "E15", "time": 10 , "type": "interchange" , "line": "BTS_SUKHUMVIT" }
           ]
         }
       ]

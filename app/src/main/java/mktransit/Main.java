@@ -20,7 +20,7 @@ public class Main extends Application {
         List<Line> lines = reader.getLines(); // ดึงข้อมูล Line
         Map<String, Station> stationMap = reader.getStationMap(); // ดึงข้อมูล Station
 
-        Station SomeStation = stationMap.get("N8");
+        Station SomeStation = stationMap.get("YL13");
 
         VBox contentBox = new VBox(10);
         contentBox.setStyle("-fx-padding: 20; -fx-alignment: top-left;");
@@ -48,7 +48,7 @@ public class Main extends Application {
 
             // Show N8
             System.out.println(SomeStation.getName());
-            Label A = new Label("Station N8: " + SomeStation.getName());
+            Label A = new Label("Station ..: " + SomeStation.getName());
             contentBox.getChildren().add(A);
         }
 
