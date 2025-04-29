@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AlgorithmTest",
+            "request": "launch",
+            "mainClass": "mktransit.AlgorithmTest",
+            "projectName": "app"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "mktransit.Main",
