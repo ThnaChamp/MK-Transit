@@ -12,8 +12,8 @@ public class AlgorithmTest {
         PathFinder pathFinder = new PathFinder(stationMap);
 
         // ลองหาเส้นทางที่ "ไม่ผ่าน interchange"
-        String startId = "N6";
-        String endId = "E4";
+        String startId = "YL01";
+        String endId = "RW02";
 
         PathResult result = pathFinder.findShortestPath(startId, endId);
 
