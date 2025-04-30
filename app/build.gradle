@@ -46,6 +46,7 @@ application {
     mainClass = 'mktransit.GuiTest'
     // mainClass = 'mktransit.AlgorithmTest'
     // mainClass = 'mktransit.ZoomableMap'
+    // mainClass = 'mktransit.ChoiceBoxTest'
 }
 
 tasks.named('test') {

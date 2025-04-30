@@ -17,8 +17,8 @@ import javafx.stage.Stage;
 
 public class GuiTest extends Application {
 
-    private double scale = 1.0;
-    private final double minScale = 1.5;
+    private double scale = 1.5;
+    private final double minScale = 1.6;
     private final double maxScale = 7;
 
     @Override
@@ -27,17 +27,22 @@ public class GuiTest extends Application {
 
         // ---------- LEFT ----------
         StackPane leftPane = new StackPane();
-        leftPane.setPrefWidth(300);
+        leftPane.setPrefWidth(250);
 
         // Map image
         Image image = new Image("https://www.bts.co.th/assets/images/yellow-map.jpg");
         ImageView imageView = new ImageView(image);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
-        imageView.fitWidthProperty().bind(leftPane.widthProperty().multiply(0.6)); // ปรับขนาดเริ่มต้นอิงขนาด pane
+        imageView.fitWidthProperty().bind(leftPane.widthProperty().multiply(0.5)); // ปรับขนาดเริ่มต้นอิงขนาด pane
 
         // Group ที่ใช้ scale/translate
         Group zoomGroup = new Group(imageView);
+
+        // ตั้งค่าขนาดเริ่มต้นของ zoomGroup ให้เท่ากับ minScale
+        zoomGroup.setScaleX(minScale);
+        zoomGroup.setScaleY(minScale);
+        scale = minScale; // กำหนดค่า scale เริ่มต้นให้เท่ากับ minScale
 
         // Clip กำหนดขอบไม่ให้ภาพหลุด
         Rectangle clip = new Rectangle();
@@ -68,7 +73,7 @@ public class GuiTest extends Application {
         });
 
         // ซูมเฉพาะเมื่อเมาส์อยู่บนรูป
-        
+
         imageView.setOnScroll((ScrollEvent event) -> {
             double zoomFactor = 1.1;
             double deltaY = event.getDeltaY();
@@ -109,8 +114,8 @@ public class GuiTest extends Application {
 
         // ---------- RIGHT ----------
         VBox rightPane = new VBox(10);
-        rightPane.setPrefWidth(700);
-        rightPane.setStyle("-fx-padding: 10;");
+        rightPane.setPrefWidth(650);
+        rightPane.setStyle("-fx-padding: 10 0 10 70;"); // Top Right Bottom Left
         rightPane.getChildren().addAll(
                 new Label("Start Station: "),
                 new Label("End Station: "));
