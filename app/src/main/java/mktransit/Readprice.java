@@ -1,8 +1,7 @@
 package mktransit;
 
-import java.util.*;
+import java.util.Map;
 
-// Main.java
 public class Readprice {
     public static void main(String[] args) {
         try {
@@ -12,7 +11,7 @@ public class Readprice {
             TrainFareService service = new TrainFareService(fareTable);
 
             String from = "N24";
-            String to = "W1";
+            String to = "N2";
             Integer fare = service.findFare(from, to);
 
             if (fare != null) {
