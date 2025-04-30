@@ -68,6 +68,7 @@ public class GuiTest extends Application {
         });
 
         // ซูมเฉพาะเมื่อเมาส์อยู่บนรูป
+        
         imageView.setOnScroll((ScrollEvent event) -> {
             double zoomFactor = 1.1;
             double deltaY = event.getDeltaY();
