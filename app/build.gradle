@@ -31,6 +31,9 @@ dependencies {
     implementation libs.guava
 
     implementation 'org.json:json:20240303'
+
+    implementation 'org.apache.poi:poi:5.2.3'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -43,10 +46,11 @@ java {
 application {
     // Define the main class for the application.
     // mainClass = 'mktransit.Main'
-    mainClass = 'mktransit.GuiTest'
+    // mainClass = 'mktransit.GuiTest'
     // mainClass = 'mktransit.AlgorithmTest'
     // mainClass = 'mktransit.ZoomableMap'
     // mainClass = 'mktransit.ChoiceBoxTest'
+    mainClass = 'mktransit.Readprice'
 }
 
 tasks.named('test') {
