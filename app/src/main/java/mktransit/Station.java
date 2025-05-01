@@ -7,13 +7,14 @@ public class Station {
     private String name;
     private boolean interchange = false;
     private List<Connection> connections;
-    private Line line;
+    private String color;
 
-    public Station(String id, String name, boolean interchange, List<Connection> connections) {
+    public Station(String id, String name, boolean interchange, List<Connection> connections, String color) {
         this.id = id;
         this.name = name;
         this.interchange = interchange;
         this.connections = connections;
+        this.color = color;
     }
 
     public String getId() {
@@ -31,8 +32,8 @@ public class Station {
     public List<Connection> getConnections() {
         return connections;
     }
-    
-    public void setLine(Line line) {
-        this.line = line;
-    }
+
+    public String getColor() {
+        return color;
+    }   
 }

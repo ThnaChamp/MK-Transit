@@ -40,7 +40,7 @@ public class AlgorithmTest {
 
             for (String stationId : result.getFullPath()) {
                 Station station = stationMap.get(stationId);
-                System.out.println("- " + station.getName() + " (" + station.getId() + ")");
+                System.out.println("- " + station.getName() + " (" + station.getId() + ") Color: " + station.getColor());
             }
 
             

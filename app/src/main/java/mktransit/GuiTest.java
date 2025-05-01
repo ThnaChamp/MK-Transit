@@ -36,14 +36,16 @@ public class GuiTest extends Application {
 
         List<Line> lines = reader.getLines(); // ดึงข้อมูล Line
         Map<String, Station> stationMap = reader.getStationMap(); // ดึงข้อมูล Station
-        
+
         PathFinder pathFinder = new PathFinder(stationMap);
-        
+
         // โหลดสถานีมาจาก JsonReader
         List<Station> stationList = new ArrayList<>(reader.getStationMap().values());
         StationUtil stationUtil = new StationUtil(stationList);
 
         HBox root = new HBox();
+
+        Scene scene = new Scene(root, 1530, 790);
 
         // ---------- LEFT ----------
         StackPane leftPane = new StackPane();
@@ -171,28 +173,74 @@ public class GuiTest extends Application {
         Label stationName1 = new Label();
         stationName1.setStyle("-fx-text-fill: #003366; -fx-font-size: 13px; -fx-font-style: italic;");
 
+        Circle circleStation1 = new Circle(6);
+
         // จัด TextField และ Label ในแนวนอน
         HBox textField1Box = new HBox(10); // ระยะห่างระหว่าง TextField และ Label
         textField1Box.setStyle("-fx-alignment: center;"); // จัดให้อยู่ชิดซ้าย
-        textField1Box.getChildren().addAll(textField1, stationName1);
+        textField1Box.getChildren().addAll(textField1);
 
         // เพิ่ม Listener ให้ TextField1
         textField1.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
                 stationName1.setText("");
                 textField1.setStyle(""); // ล้างชื่อสถานีหากไม่มีการป้อนข้อมูล
+                // textField1Box.getChildren().addAll(textField1, circleStation1, stationName1);
+                textField1Box.getChildren().remove(stationName1);
                 return;
             }
 
             String stationId = newValue.toUpperCase();
-            Station SomeStation = stationMap.get(stationId); // ดึงข้อมูลสถานีจาก map
+            Station someStation = stationMap.get(stationId); // ดึงข้อมูลสถานีจาก map
 
-            if (SomeStation == null) {
+            if (!textField1Box.getChildren().contains(stationName1)) {
+                textField1Box.getChildren().add(1, stationName1);
+            }
+
+            if (someStation == null) {
                 stationName1.setText("Station not found"); // แสดงข้อความเมื่อไม่พบสถานี
                 textField1.setStyle("-fx-border-color: red;"); // เปลี่ยนสีขอบ TextField เป็นสีแดง
+                textField1Box.getChildren().remove(circleStation1);
             } else {
-                stationName1.setText(SomeStation.getName()); // แสดงชื่อสถานี
+                stationName1.setText(someStation.getName()); // แสดงชื่อสถานี
                 textField1.setStyle(""); // ล้างสีขอบ TextField
+
+                if (!textField1Box.getChildren().contains(circleStation1)) {
+                    textField1Box.getChildren().add(1, circleStation1); // เพิ่มวงกลมกลับมาในตำแหน่งที่ 2
+                }
+
+                switch (someStation.getColor()) {
+                    case "blue":
+                        circleStation1.setStyle("-fx-fill: #063b82;"); // สีแดง
+                        break;
+                    case "lightgreen":
+                        circleStation1.setStyle("-fx-fill: #84c469;"); // สีเขียวอ่อน
+                        break;
+                    case "darkgreen":
+                        circleStation1.setStyle("-fx-fill: #328674;"); // สีเขียวเข้ม
+                        break;
+                    case "yellow":
+                        circleStation1.setStyle("-fx-fill: #edd240;"); // สีเหลือง
+                        break;
+                    case "purple":
+                        circleStation1.setStyle("-fx-fill: #854289;"); // สีม่วง
+                        break;
+                    case "darkred":
+                        circleStation1.setStyle("-fx-fill: #690606;"); // สีแดงเข้ม
+                        break;
+                    case "pink":
+                        circleStation1.setStyle("-fx-fill: #cb4e9b;"); // สีชมพู
+                        break;
+                    case "red":
+                        circleStation1.setStyle("-fx-fill: #cd6060;"); // สีแดง
+                        break;
+                    case "gold":
+                        circleStation1.setStyle("-fx-fill: #ad9f51;"); // สีทอง
+                        break;
+                    default:
+                        circleStation1.setStyle("-fx-fill: transparent;"); // ซ่อนวงกลมสีหากไม่มีสีที่ตรงกัน
+                        break;
+                }
             }
         });
 
@@ -207,28 +255,73 @@ public class GuiTest extends Application {
         Label stationName2 = new Label();
         stationName1.setStyle("-fx-text-fill: #003366; -fx-font-size: 13px; -fx-font-style: italic;");
 
+        Circle circleStation2 = new Circle(6);
+
         // จัด TextField และ Label ในแนวนอน
         HBox textField2Box = new HBox(10); // ระยะห่างระหว่าง TextField และ Label
         textField2Box.setStyle("-fx-alignment: center;"); // จัดให้อยู่ชิดซ้าย
-        textField2Box.getChildren().addAll(textField2, stationName2);
+        textField2Box.getChildren().addAll(textField2);
 
         // เพิ่ม Listener ให้ TextField1
         textField2.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
                 stationName2.setText("");
                 textField2.setStyle(""); // ล้างชื่อสถานีหากไม่มีการป้อนข้อมูล
+                textField1Box.getChildren().remove(stationName2);
                 return;
             }
 
             String stationId = newValue.toUpperCase();
-            Station SomeStation = stationMap.get(stationId); // ดึงข้อมูลสถานีจาก map
+            Station someStation = stationMap.get(stationId); // ดึงข้อมูลสถานีจาก map
 
-            if (SomeStation == null) {
+            if (!textField2Box.getChildren().contains(stationName2)) {
+                textField2Box.getChildren().add(1, stationName2);
+            }
+
+            if (someStation == null) {
                 stationName2.setText("Station not found"); // แสดงข้อความเมื่อไม่พบสถานี
                 textField2.setStyle("-fx-border-color: red;"); // เปลี่ยนสีขอบ TextField เป็นสีแดง
+                textField2Box.getChildren().remove(circleStation2);
             } else {
-                stationName2.setText(SomeStation.getName()); // แสดงชื่อสถานี
+                stationName2.setText(someStation.getName()); // แสดงชื่อสถานี
                 textField2.setStyle(""); // ล้างสีขอบ TextField
+
+                if (!textField2Box.getChildren().contains(circleStation2)) {
+                    textField2Box.getChildren().add(1, circleStation2); // เพิ่มวงกลมกลับมาในตำแหน่งที่ 2
+                }
+
+                switch (someStation.getColor()) {
+                    case "blue":
+                        circleStation2.setStyle("-fx-fill: #063b82;"); // สีแดง
+                        break;
+                    case "lightgreen":
+                        circleStation2.setStyle("-fx-fill: #84c469;"); // สีเขียวอ่อน
+                        break;
+                    case "darkgreen":
+                        circleStation2.setStyle("-fx-fill: #328674;"); // สีเขียวเข้ม
+                        break;
+                    case "yellow":
+                        circleStation2.setStyle("-fx-fill: #edd240;"); // สีเหลือง
+                        break;
+                    case "purple":
+                        circleStation2.setStyle("-fx-fill: #854289;"); // สีม่วง
+                        break;
+                    case "darkred":
+                        circleStation2.setStyle("-fx-fill: #690606;"); // สีแดงเข้ม
+                        break;
+                    case "pink":
+                        circleStation2.setStyle("-fx-fill: #cb4e9b;"); // สีชมพู
+                        break;
+                    case "red":
+                        circleStation2.setStyle("-fx-fill: #cd6060;"); // สีแดง
+                        break;
+                    case "gold":
+                        circleStation2.setStyle("-fx-fill: #ad9f51;"); // สีทอง
+                        break;
+                    default:
+                        circleStation2.setStyle("-fx-fill: transparent;"); // ซ่อนวงกลมสีหากไม่มีสีที่ตรงกัน
+                        break;
+                }
             }
         });
 
@@ -262,47 +355,54 @@ public class GuiTest extends Application {
         // Add action for buttons
         submitButton.setOnAction(event -> {
             String startId = textField1.getText().trim(); // ดึงค่า Start Station ID
-            String endId = textField2.getText().trim();   // ดึงค่า End Station ID
-        
+            String endId = textField2.getText().trim(); // ดึงค่า End Station ID
+
             if (startId.isEmpty() || endId.isEmpty()) {
-                System.out.println("Karuna Krak Hai Krop Tuan!"); // แสดงข้อความเมื่อไม่มีการป้อนข้อมูล
+                System.out.println("กรุณากรอกข้อมูลให้ครบถ้วน!"); // แสดงข้อความเมื่อไม่มีการป้อนข้อมูล
                 return;
             }
-        
-            PathResult result = pathFinder.findShortestPath(startId, endId);
-        
-            if (result.getFullPath().isEmpty()) {
-                System.out.println(" Mai Pop Sen Tang " + startId + " ไปยัง " + endId);
-            } else {
-                System.out.println(" Jur Sen Tang");
-                System.out.println("เส้นทางเดินทั้งหมด:");
-            
-                for (String stationId : result.getFullPath()) {
-                    Station station = stationMap.get(stationId);
-                    System.out.println("- " + station.getName() + " (" + station.getId() + ")");
-                }
-            
-                List<String> importantSteps = result.getImportantSteps();
-                if (!importantSteps.isEmpty()) {
-                    System.out.print("\nจุดสำคัญ (Important Steps):\n");
-                    System.out.print(stationUtil.IDtoName(startId) + " (" + startId + ")");
-            
-                    for (String currentId : importantSteps) {
-                        Station station = stationMap.get(currentId);
-                        System.out.print(" -> " + stationUtil.IDtoName(currentId) + " (" + station.getId() + ")");
-                    }
-                    System.out.println();
-                } else {
-                    System.out.println("\nไม่มีจุดเปลี่ยนสาย (Interchange) ในเส้นทางนี้");
-                }
-            
-                System.out.println("\nเวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
-            }
+
+            // สร้างหน้าถัดไป
+            VBox nextPage = new VBox(20);
+            nextPage.setStyle("-fx-alignment: center; -fx-padding: 20;");
+            nextPage.setPrefSize(1530, 790); // ขนาดเริ่มต้น
+
+            VBox PathBox1 = new VBox(10); // ใช้ VBox ที่ถูกต้อง
+            PathBox1.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
+                    + "-fx-background-color: #f9f9f9; -fx-alignment: center; "
+                    + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
+            PathBox1.setMaxWidth(200);
+
+            VBox PathBox2 = new VBox(10); // ใช้ VBox ที่ถูกต้อง
+            PathBox2.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
+                    + "-fx-background-color: #f9f9f9; -fx-alignment: center; "
+                    + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
+            PathBox2.setMaxWidth(200);
+
+            Button backButton = new Button("กลับไปหน้าหลัก");
+            backButton.setStyle("-fx-background-color: #003366; -fx-text-fill: white; -fx-font-weight: bold;");
+            VBox.setVgrow(backButton, Priority.ALWAYS); // อนุญาตให้ปุ่มขยายตัวตาม VBox
+
+            // กดปุ่ม Back เพื่อกลับไปหน้าหลัก
+            backButton.setOnAction(e -> {
+                stage.setScene(scene); // กลับไปยัง Scene หลัก
+            });
+
+            nextPage.getChildren().addAll(PathBox1, PathBox2, backButton);
+
+            // สร้าง Scene ใหม่สำหรับหน้าถัดไป
+            Scene nextScene = new Scene(nextPage);
+            stage.setScene(nextScene); // เปลี่ยน Scene ไปยังหน้าถัดไป
+            stage.setResizable(true); // อนุญาตให้ปรับขนาดหน้าต่างได้
         });
 
         clearButton.setOnAction(event -> {
             textField1.clear();
             textField2.clear();
+            textField1Box.getChildren().remove(circleStation1);
+            textField2Box.getChildren().remove(circleStation2);
+            textField1Box.getChildren().remove(stationName1);
+            textField2Box.getChildren().remove(stationName2);
         });
 
         // Add buttons to an HBox
@@ -321,7 +421,6 @@ public class GuiTest extends Application {
         HBox.setHgrow(leftPane, Priority.ALWAYS);
         root.getChildren().addAll(leftPane, rightPane);
 
-        Scene scene = new Scene(root, 900, 600);
         stage.setTitle("MK Transit");
         stage.setScene(scene);
         stage.show();
