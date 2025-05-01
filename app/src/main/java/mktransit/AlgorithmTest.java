@@ -3,6 +3,7 @@ package mktransit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import mktransit.*;
 
 public class AlgorithmTest {
     public static void main(String[] args) {
@@ -27,8 +28,8 @@ public class AlgorithmTest {
 
         // ลองหาเส้นทางที่ "ไม่ผ่าน interchange"
 
-        String startId = "YL01";
-        String endId = "RW02";
+        String startId = "S7";
+        String endId = "BL36";
 
         PathResult result = pathFinder.findShortestPath(startId, endId);
 
@@ -44,24 +45,47 @@ public class AlgorithmTest {
             }
 
             
-            List<String> importantSteps = result.getImportantSteps();
-            for (int i = 0; i < importantSteps.size(); i++) {
-                String currentId = importantSteps.get(i);
+            // List<String> importantSteps = result.getImportantSteps();
+            // for (int i = 0; i < importantSteps.size(); i++) {
+            //     String currentId = importantSteps.get(i);
             
-                // ป้องกัน IndexOutOfBounds: ต้องเช็ก i > 0 ก่อนใช้ i - 1
-                if (i == importantSteps.size() - 1 && i > 0 && currentId.equals(importantSteps.get(i - 1))) {
-                    continue; // ข้ามถ้าซ้ำกับสถานีก่อนหน้า
-                }
-                Station station = stationMap.get(currentId);
-                if (i == 0) {
-                    System.out.print("\n📍 จุดสำคัญ (Important Steps):\n");
-                    System.out.print(stationUtil.IDtoName(startId)+"("+startId+")" + " -> ");
-                    System.out.print(stationUtil.IDtoName(currentId)+"("+station.getId()+")");
-                } else {
-                    System.out.print(" -> " + stationUtil.IDtoName(currentId)+"("+station.getId()+")");
+            //     // ป้องกัน IndexOutOfBounds: ต้องเช็ก i > 0 ก่อนใช้ i - 1
+            //     if (i == importantSteps.size() - 1 && i > 0 && currentId.equals(importantSteps.get(i - 1))) {
+            //         continue; // ข้ามถ้าซ้ำกับสถานีก่อนหน้า
+            //     }
+            //     Station station = stationMap.get(currentId);
+            //     if (i == 0) {
+            //         System.out.print("\n📍 จุดสำคัญ (Important Steps):\n");
+            //         System.out.print(stationUtil.IDtoName(startId)+"("+startId+")" + " -> ");
+            //         System.out.print(stationUtil.IDtoName(currentId)+"("+station.getId()+")");
+            //     } else {
+            //         System.out.print(" -> " + stationUtil.IDtoName(currentId)+"("+station.getId()+")");
+            //     }
+            // }
+            // System.out.println();
+
+            List<String> fullPath = result.getFullPath();
+
+            List<String> importantSteps = PathUtil.filterImportantStepsWithActualTransfers(fullPath, stationMap);
+
+            if (importantSteps.isEmpty()) {
+                System.out.println("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง");
+            } else {
+                System.out.println("📍 จุดสำคัญที่มีการเปลี่ยนสาย (Important Transfer Steps):");
+                for (String step : importantSteps) {
+                    String[] parts = step.split("->");
+                    String fromId = parts[0];
+                    String toId = parts[1];
+
+                    String fromName = stationUtil.IDtoName(fromId); // ✅ ใช้งานผ่าน instance
+                    String toName = stationUtil.IDtoName(toId);
+
+                    System.out.println("🔄 " + fromName + " ➜ " + toName);
                 }
             }
-            System.out.println();
+
+            
+
 
             System.out.println("\n🕒 เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
         }
