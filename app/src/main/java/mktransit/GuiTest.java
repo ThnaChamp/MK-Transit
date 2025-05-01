@@ -1,5 +1,6 @@
 package mktransit;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,10 @@ public class GuiTest extends Application {
 
         List<Line> lines = reader.getLines(); // ดึงข้อมูล Line
         Map<String, Station> stationMap = reader.getStationMap(); // ดึงข้อมูล Station
+        PathFinder pathFinder = new PathFinder(stationMap);
+        // โหลดสถานีมาจาก JsonReader
+        List<Station> stationList = new ArrayList<>(reader.getStationMap().values());
+        StationUtil stationUtil = new StationUtil(stationList);
 
         HBox root = new HBox();
 
@@ -208,8 +213,8 @@ public class GuiTest extends Application {
         // เพิ่ม Listener ให้ TextField1
         textField2.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
-                stationName1.setText("");
-                textField1.setStyle(""); // ล้างชื่อสถานีหากไม่มีการป้อนข้อมูล
+                stationName2.setText("");
+                textField2.setStyle(""); // ล้างชื่อสถานีหากไม่มีการป้อนข้อมูล
                 return;
             }
 
@@ -254,9 +259,47 @@ public class GuiTest extends Application {
 
         // Add action for buttons
         submitButton.setOnAction(event -> {
-            // ส่งเฉพาะรหัสสถานี (ไม่รวมชื่อสถานี)
-            System.out.println("Start Station: " + textField1.getText());
-            System.out.println("End Station: " + textField2.getText());
+            String startId = textField1.getText().trim(); // ดึงค่า Start Station ID
+            String endId = textField2.getText().trim();   // ดึงค่า End Station ID
+        
+            if (startId.isEmpty() || endId.isEmpty()) {
+                System.out.println("Karuna Krak Hai Krop Tuan!"); // แสดงข้อความเมื่อไม่มีการป้อนข้อมูล
+                return;
+            }
+        
+            PathResult result = pathFinder.findShortestPath(startId, endId);
+        
+            if (result.getFullPath().isEmpty()) {
+                System.out.println(" Mai Pop Sen Tang " + startId + " ไปยัง " + endId);
+            } else {
+                System.out.println(" Jur Sen Tang");
+                System.out.println("เส้นทางเดินทั้งหมด:");
+        
+                for (String stationId : result.getFullPath()) {
+                    Station station = stationMap.get(stationId);
+                    System.out.println("- " + station.getName() + " (" + station.getId() + ")");
+                }
+        
+                List<String> importantSteps = result.getImportantSteps();
+                for (int i = 0; i < importantSteps.size(); i++) {
+                    String currentId = importantSteps.get(i);
+        
+                    if (i == importantSteps.size() - 1 && i > 0 && currentId.equals(importantSteps.get(i - 1))) {
+                        continue;
+                    }
+                    Station station = stationMap.get(currentId);
+                    if (i == 0) {
+                        System.out.print("\n จุดสำคัญ (Important Steps):\n");
+                        System.out.print(stationUtil.IDtoName(startId) + "(" + startId + ")" + " -> ");
+                        System.out.print(stationUtil.IDtoName(currentId) + "(" + station.getId() + ")");
+                    } else {
+                        System.out.print(" -> " + stationUtil.IDtoName(currentId) + "(" + station.getId() + ")");
+                    }
+                }
+                System.out.println();
+        
+                System.out.println("\n เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
+            }
         });
 
         clearButton.setOnAction(event -> {
