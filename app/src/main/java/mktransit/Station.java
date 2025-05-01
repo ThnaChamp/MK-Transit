@@ -7,6 +7,7 @@ public class Station {
     private String name;
     private boolean interchange = false;
     private List<Connection> connections;
+    private Line line;
 
     public Station(String id, String name, boolean interchange, List<Connection> connections) {
         this.id = id;
@@ -29,5 +30,9 @@ public class Station {
 
     public List<Connection> getConnections() {
         return connections;
+    }
+    
+    public void setLine(Line line) {
+        this.line = line;
     }
 }
