@@ -371,13 +371,13 @@ public class GuiTest extends Application {
             PathBox1.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
                     + "-fx-background-color: #f9f9f9; -fx-alignment: center; "
                     + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
-            PathBox1.setMaxWidth(200);
+            PathBox1.setMaxWidth(700);
 
             VBox PathBox2 = new VBox(10); // ใช้ VBox ที่ถูกต้อง
             PathBox2.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
                     + "-fx-background-color: #f9f9f9; -fx-alignment: center; "
                     + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
-            PathBox2.setMaxWidth(200);
+            PathBox2.setMaxWidth(700);
 
             Button backButton = new Button("กลับไปหน้าหลัก");
             backButton.setStyle("-fx-background-color: #003366; -fx-text-fill: white; -fx-font-weight: bold;");
