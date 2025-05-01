@@ -66,7 +66,7 @@
           "connections": [
             { "to": "N18", "time": 2 },
             { "to": "N16", "time": 2 },
-            { "to": "PK16", "time": 1 , "type": "interchange", "line": "MRT_PINK" }
+            { "to": "PK16", "time": 5 , "type": "interchange", "line": "MRT_PINK" }
           ]
         },
         {
@@ -132,7 +132,7 @@
           "connections": [
             { "to": "N10", "time": 2 },
             { "to": "N8", "time": 3 },
-            { "to": "BL14", "time": 5 , "type": "interchange" , "line": "MRT_BLUE" }
+            { "to": "BL14", "time": 6 , "type": "interchange" , "line": "MRT_BLUE" }
           ]
         },
         {
@@ -142,7 +142,7 @@
           "connections": [
             { "to": "N9", "time": 3 },
             { "to": "N7", "time": 1 },
-            { "to": "BL13", "time": 5 , "type": "interchange" , "line": "MRT_BLUE" }
+            { "to": "BL13", "time": 3 , "type": "interchange" , "line": "MRT_BLUE" }
           ]
         },
         {
@@ -184,7 +184,7 @@
           "connections": [
             { "to": "N3", "time": 2 },
             { "to": "N1", "time": 2 },
-            { "to": "A8", "time": 4 , "type": "interchange" , "line": "ARL" }
+            { "to": "A8", "time": 3 , "type": "interchange" , "line": "ARL" }
           ]
         },
         {
@@ -202,7 +202,7 @@
           "connections": [
             { "to": "N1", "time": 2 },
             { "to": "E1", "time": 2 },
-            { "to": "W1", "time": 1 , "line": "BTS_SILOM" },
+            { "to": "W1", "time": 4 , "line": "BTS_SILOM" },
             { "to": "S1", "time": 3 , "line": "BTS_SILOM" }
           ]
         },
@@ -237,7 +237,7 @@
           "connections": [
             { "to": "E3", "time": 1 },
             { "to": "E5", "time": 2 },
-            { "to": "BL22", "time": 3 , "type": "interchange" , "line": "MRT_BLUE" }
+            { "to": "BL22", "time": 5 , "type": "interchange" , "line": "MRT_BLUE" }
           ]
         },
         {
@@ -403,7 +403,7 @@
           "id": "W1",
           "name": "National-Stadium",
           "connections": [
-            { "to": "CEN", "time": 1 , "type" : "interchange"}
+            { "to": "CEN", "time": 3 , "type" : "interchange"}
           ]
         },
         {
@@ -545,7 +545,7 @@
           "interchange": true,
           "connections": [
             { "to": "G2", "time": 2 },
-            { "to": "S7", "time": 1 , "type" : "interchange", "line": "BTS_SILOM" }
+            { "to": "S7", "time": 3 , "type" : "interchange", "line": "BTS_SILOM" }
           ]
         }
       ]
@@ -635,7 +635,7 @@
           "connections": [
             { "to": "RW01", "time": 5 },
             { "to": "RN09", "time": 2 },
-            { "to": "BL11", "time": 3, "type": "interchange", "line": "MRT_BLUE" }
+            { "to": "BL11", "time": 5, "type": "interchange", "line": "MRT_BLUE" }
           ]
         },
         {
@@ -644,7 +644,7 @@
           "interchange": true,
           "connections": [
             { "to": "RN10", "time": 5 },
-            { "to": "BL11", "time": 3, "type": "interchange", "line": "MRT_BLUE" }
+            { "to": "BL11", "time": 5, "type": "interchange", "line": "MRT_BLUE" }
           ]
         },
         {
@@ -716,7 +716,7 @@
           "connections": [
             { "to": "BL35", "time": 2 },
             { "to": "BL33", "time": 1 },
-            { "to": "S12", "time": 5 , "type": "interchange" , "line": "BTS_SILOM" }
+            { "to": "S12", "time": 4 , "type": "interchange" , "line": "BTS_SILOM" }
           ]
         },
         {
@@ -807,7 +807,7 @@
           "connections": [
             { "to": "BL09", "time": 1 },
             { "to": "BL11", "time": 3 },
-            { "to": "PP16", "time": 3 , "type": "interchange" , "line": "MRT_PURPLE" }
+            { "to": "PP16", "time": 2 , "type": "interchange" , "line": "MRT_PURPLE" }
           ]
         },
         {
@@ -817,8 +817,8 @@
           "connections": [
             { "to": "BL10", "time": 3 },
             { "to": "BL12", "time": 2 },
-            { "to": "RN01", "time": 10 , "type": "interchange" , "line": "SRT_RED" },
-            { "to": "RW01", "time": 10 , "type": "interchange" , "line": "SRT_RED" }
+            { "to": "RN01", "time": 5 , "type": "interchange" , "line": "SRT_RED" },
+            { "to": "RW01", "time": 5 , "type": "interchange" , "line": "SRT_RED" }
           ]
         },
         {
@@ -836,7 +836,7 @@
           "connections": [
             { "to": "BL12", "time": 2 },
             { "to": "BL14", "time": 2 },
-            { "to": "N8", "time": 5 , "type": "interchange" , "line": "BTS_SUKHUMVIT" }
+            { "to": "N8", "time": 3 , "type": "interchange" , "line": "BTS_SUKHUMVIT" }
           ]
         },
         {
@@ -846,7 +846,7 @@
           "connections": [
             { "to": "BL13", "time": 2 },
             { "to": "BL15", "time": 3 },
-            { "to": "N9", "time": 4 , "type": "interchange" , "line": "BTS_SUKHUMVIT" }
+            { "to": "N9", "time": 6 , "type": "interchange" , "line": "BTS_SUKHUMVIT" }
           ]
         },
         {
@@ -916,7 +916,7 @@
           "connections": [
             { "to": "BL21", "time": 2 },
             { "to": "BL23", "time": 2 },
-            { "to": "E4", "time": 4 , "type": "interchange" , "line": "BTS_SUKHUMVIT" }
+            { "to": "E4", "time": 5 , "type": "interchange" , "line": "BTS_SUKHUMVIT" }
           ]
         },
         {
@@ -950,7 +950,7 @@
           "connections": [
             { "to": "BL25", "time": 2 },
             { "to": "BL27", "time": 1 },
-            { "to": "S2", "time": 6 , "type": "interchange" , "line": "BTS_SILOM" }
+            { "to": "S2", "time": 4 , "type": "interchange" , "line": "BTS_SILOM" }
           ]
         },
         {
@@ -1036,7 +1036,7 @@
           "connections": [
             { "to": "A5", "time": 3 },
             { "to": "A3", "time": 3 },
-            { "to": "YL11", "time": 5 , "type": "interchange" , "line": "MRT_YELLOW" }
+            { "to": "YL11", "time": 8 , "type": "interchange" , "line": "MRT_YELLOW" }
           ]
         },
         {
@@ -1054,7 +1054,7 @@
           "connections": [
             { "to": "A7", "time": 2 },
             { "to": "A5", "time": 3 },
-            { "to": "BL21", "time": 5, "type": "interchange", "line": "MRT_BLUE" }
+            { "to": "BL21", "time": 7, "type": "interchange", "line": "MRT_BLUE" }
           ]
         },
         {
@@ -1336,7 +1336,7 @@
           "interchange": true,
           "connections": [
             { "to": "YL02", "time": 2 },
-            { "to": "BL15", "time": 2 , "type": "interchange" , "line": "MRT_BLUE" }
+            { "to": "BL15", "time": 7 , "type": "interchange" , "line": "MRT_BLUE" }
           ]
         },
         {
@@ -1418,7 +1418,7 @@
           "connections": [
             { "to": "YL10", "time": 3 },
             { "to": "YL12", "time": 3 },
-            { "to": "A4", "time": 5 , "type": "interchange" , "line": "ARL" }
+            { "to": "A4", "time": 8 , "type": "interchange" , "line": "ARL" }
           ]
         },
         {
@@ -1660,4 +1660,3 @@
   }
 ]
 }
-
