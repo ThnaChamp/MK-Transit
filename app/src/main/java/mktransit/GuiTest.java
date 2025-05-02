@@ -362,6 +362,11 @@ public class GuiTest extends Application {
                 return;
             }
 
+            PathResult result = pathFinder.findShortestPath(startId, endId);
+            int i = 0;
+
+            // Calculate path
+
             // สร้างหน้าถัดไป
             VBox nextPage = new VBox(20);
             nextPage.setStyle("-fx-alignment: center; -fx-padding: 20;");

@@ -28,7 +28,7 @@ public class AlgorithmTest {
         // ลองหาเส้นทางที่ "ไม่ผ่าน interchange"
 
         String startId = "CEN";
-        String endId = "BL36";
+        String endId = "YL01";
 
         PathResult result = pathFinder.findShortestPath(startId, endId);
         int i=0;
@@ -44,26 +44,6 @@ public class AlgorithmTest {
                 System.out.println("- " + station.getName() + " (" + station.getId() + ")");
                 i++;
             }
-
-            
-            // List<String> importantSteps = result.getImportantSteps();
-            // for (int i = 0; i < importantSteps.size(); i++) {
-            //     String currentId = importantSteps.get(i);
-            
-            //     // ป้องกัน IndexOutOfBounds: ต้องเช็ก i > 0 ก่อนใช้ i - 1
-            //     if (i == importantSteps.size() - 1 && i > 0 && currentId.equals(importantSteps.get(i - 1))) {
-            //         continue; // ข้ามถ้าซ้ำกับสถานีก่อนหน้า
-            //     }
-            //     Station station = stationMap.get(currentId);
-            //     if (i == 0) {
-            //         System.out.print("\n📍 จุดสำคัญ (Important Steps):\n");
-            //         System.out.print(stationUtil.IDtoName(startId)+"("+startId+")" + " -> ");
-            //         System.out.print(stationUtil.IDtoName(currentId)+"("+station.getId()+")");
-            //     } else {
-            //         System.out.print(" -> " + stationUtil.IDtoName(currentId)+"("+station.getId()+")");
-            //     }
-            // }
-            // System.out.println();
 
             List<String> fullPath = result.getFullPath();
 
