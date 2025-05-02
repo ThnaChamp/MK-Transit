@@ -42,12 +42,8 @@ public class AlgorithmTest {
 
             for (String stationId : result.getFullPath()) {
                 Station station = stationMap.get(stationId);
-<<<<<<< HEAD
-                System.out.println("- " + station.getName() + " (" + station.getId() + ") Color: " + station.getColor());
-=======
                 System.out.println("- " + station.getName() + " (" + station.getId() + ")");
                 i++;
->>>>>>> 61d4438 (update)
             }
 
             
@@ -78,7 +74,7 @@ public class AlgorithmTest {
                 System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง | จำนวน "+i+ " สถานี ");
                 System.out.println(stationUtil.IDtoName(startId)+"(" +startId+")"+"➜"+stationUtil.IDtoName(endId) +"("+endId+")");
             } else {
-                System.out.println("📍 มีการเปลี่ยนสถานี | จำนวน "+i+" สถานี");
+                System.out.println("📍 เส้นทางนี้มีการเปลี่ยนสาย | จำนวน "+i+" สถานี");
                 for (String step : importantSteps) {
                     String[] parts = step.split("->");
                     String fromId = parts[0];
