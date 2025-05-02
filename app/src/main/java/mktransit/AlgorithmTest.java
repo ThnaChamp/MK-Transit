@@ -24,16 +24,16 @@ public class AlgorithmTest {
 
         // System.out.println(stationName); // จะได้ "สยาม" (ถ้าข้อมูลมีใน JSON)
 
-
         // ลองหาเส้นทางที่ "ไม่ผ่าน interchange"
-        String startId = "BL06";
-        String endId = "YL05";
+        String startId = "N23";
+        String endId = "";
 
         PathResult result = pathFinder.findShortestPath(startId, endId);
-        int i=0;
+        int i = 0;
 
         if (result.getFullPath().isEmpty()) {
-            System.out.println("❌ ไม่พบเส้นทางจาก " + stationUtil.IDtoName(startId)+"("+startId+")" + " ไปยัง " + stationUtil.IDtoName(endId)+"("+endId+")");
+            System.out.println("❌ ไม่พบเส้นทางจาก " + stationUtil.IDtoName(startId) + "(" + startId + ")" + " ไปยัง "
+                    + stationUtil.IDtoName(endId) + "(" + endId + ")");
         } else {
             System.out.println("✅ เจอเส้นทาง!");
             System.out.println("เส้นทางเดินทั้งหมด:");
@@ -49,11 +49,12 @@ public class AlgorithmTest {
 
             if (importantSteps.isEmpty()) {
                 System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง | จำนวน " + i + " สถานี ");
-                System.out.println(stationUtil.IDtoName(startId) + " (" + startId + ") ➜ " + stationUtil.IDtoName(endId) + " (" + endId + ")");
+                System.out.println(stationUtil.IDtoName(startId) + " (" + startId + ") ➜ " + stationUtil.IDtoName(endId)
+                        + " (" + endId + ")");
             } else {
                 System.out.println("📍 เส้นทางนี้มีการเปลี่ยนสาย | จำนวน " + i + " สถานี");
 
-                int k=0;
+                int k = 0;
                 boolean firstStep = true;
                 for (int j = 0; j < importantSteps.size(); j++) {
                     String step = importantSteps.get(j);
@@ -63,15 +64,15 @@ public class AlgorithmTest {
 
                     String fromName = stationUtil.IDtoName(fromId);
                     String toName = stationUtil.IDtoName(toId);
-                    
-                    if(!step.equals(startId)&&k==0){
-                        System.out.print("🔄 " +stationUtil.IDtoName(startId) + " (" + startId + ") ➜ ");
+
+                    if (!step.equals(startId) && k == 0) {
+                        System.out.print("🔄 " + stationUtil.IDtoName(startId) + " (" + startId + ") ➜ ");
                         k++;
                     }
 
                     if (firstStep) {
                         // เริ่มต้นจากสถานีต้นทางไปยังจุดเปลี่ยนสายแรก
-                        System.out.print( fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
+                        System.out.print(fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
                         firstStep = false;
                     } else {
                         // แสดงเฉพาะจุดเปลี่ยนสายถัดไป
@@ -87,10 +88,6 @@ public class AlgorithmTest {
 
                 System.out.println(); // ขึ้นบรรทัดใหม่
             }
-
-
-            
-
 
             System.out.println("\n🕒 เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
         }
