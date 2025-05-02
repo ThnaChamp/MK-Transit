@@ -28,20 +28,26 @@ public class AlgorithmTest {
 
         // ลองหาเส้นทางที่ "ไม่ผ่าน interchange"
 
-        String startId = "S7";
+        String startId = "CEN";
         String endId = "BL36";
 
         PathResult result = pathFinder.findShortestPath(startId, endId);
+        int i=0;
 
         if (result.getFullPath().isEmpty()) {
-            System.out.println("❌ ไม่พบเส้นทางจาก " + startId + " ไปยัง " + endId);
+            System.out.println("❌ ไม่พบเส้นทางจาก " + stationUtil.IDtoName(startId)+"("+startId+")" + " ไปยัง " + stationUtil.IDtoName(endId)+"("+endId+")");
         } else {
             System.out.println("✅ เจอเส้นทาง!");
             System.out.println("เส้นทางเดินทั้งหมด:");
 
             for (String stationId : result.getFullPath()) {
                 Station station = stationMap.get(stationId);
+<<<<<<< HEAD
                 System.out.println("- " + station.getName() + " (" + station.getId() + ") Color: " + station.getColor());
+=======
+                System.out.println("- " + station.getName() + " (" + station.getId() + ")");
+                i++;
+>>>>>>> 61d4438 (update)
             }
 
             
@@ -69,9 +75,10 @@ public class AlgorithmTest {
             List<String> importantSteps = PathUtil.filterImportantStepsWithActualTransfers(fullPath, stationMap);
 
             if (importantSteps.isEmpty()) {
-                System.out.println("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง");
+                System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง | จำนวน "+i+ " สถานี ");
+                System.out.println(stationUtil.IDtoName(startId)+"(" +startId+")"+"➜"+stationUtil.IDtoName(endId) +"("+endId+")");
             } else {
-                System.out.println("📍 จุดสำคัญที่มีการเปลี่ยนสาย (Important Transfer Steps):");
+                System.out.println("📍 มีการเปลี่ยนสถานี | จำนวน "+i+" สถานี");
                 for (String step : importantSteps) {
                     String[] parts = step.split("->");
                     String fromId = parts[0];
@@ -79,8 +86,15 @@ public class AlgorithmTest {
 
                     String fromName = stationUtil.IDtoName(fromId); // ✅ ใช้งานผ่าน instance
                     String toName = stationUtil.IDtoName(toId);
-
-                    System.out.println("🔄 " + fromName + " ➜ " + toName);
+                    if(fromId.equals(startId)){
+                        System.out.print("🔄 " + fromName+"(" +fromId+")" + " ➜ " + toName+"(" +toId+")");
+                    }else{
+                        System.out.print("🔄 " + stationUtil.IDtoName(startId)+"(" +startId+")"+" ➜ " +fromName +"(" +fromId+")" +" ➜ " + toName+"(" +toId+")");
+                    }
+                    if(!toId.equals(endId)){
+                        System.out.print(" ➜ " + stationUtil.IDtoName(endId)+"(" +endId+")");
+                    }
+                    
                 }
             }
 
