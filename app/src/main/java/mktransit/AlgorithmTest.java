@@ -26,9 +26,8 @@ public class AlgorithmTest {
 
 
         // ลองหาเส้นทางที่ "ไม่ผ่าน interchange"
-
-        String startId = "N1";
-        String endId = "PK12";
+        String startId = "BL06";
+        String endId = "YL05";
 
         PathResult result = pathFinder.findShortestPath(startId, endId);
         int i=0;
@@ -54,6 +53,7 @@ public class AlgorithmTest {
             } else {
                 System.out.println("📍 เส้นทางนี้มีการเปลี่ยนสาย | จำนวน " + i + " สถานี");
 
+                int k=0;
                 boolean firstStep = true;
                 for (int j = 0; j < importantSteps.size(); j++) {
                     String step = importantSteps.get(j);
@@ -63,10 +63,15 @@ public class AlgorithmTest {
 
                     String fromName = stationUtil.IDtoName(fromId);
                     String toName = stationUtil.IDtoName(toId);
+                    
+                    if(!step.equals(startId)&&k==0){
+                        System.out.print("🔄 " +stationUtil.IDtoName(startId) + " (" + startId + ") ➜ ");
+                        k++;
+                    }
 
                     if (firstStep) {
                         // เริ่มต้นจากสถานีต้นทางไปยังจุดเปลี่ยนสายแรก
-                        System.out.print("🔄 " + fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
+                        System.out.print( fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
                         firstStep = false;
                     } else {
                         // แสดงเฉพาะจุดเปลี่ยนสายถัดไป
