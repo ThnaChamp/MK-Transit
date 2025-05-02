@@ -362,11 +362,6 @@ public class GuiTest extends Application {
                 return;
             }
 
-            PathResult result = pathFinder.findShortestPath(startId, endId);
-            int i = 0;
-
-            // Calculate path
-
             // สร้างหน้าถัดไป
             VBox nextPage = new VBox(20);
             nextPage.setStyle("-fx-alignment: center; -fx-padding: 20;");
@@ -387,11 +382,13 @@ public class GuiTest extends Application {
                     + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
             PathBox1.setMaxWidth(700);
 
-            VBox PathBox2 = new VBox(10); // ใช้ VBox ที่ถูกต้อง
-            PathBox2.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
-                    + "-fx-background-color: #f9f9f9; -fx-alignment: center; "
-                    + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
-            PathBox2.setMaxWidth(700);
+            Label infoLabel = new Label("Travel Information:");
+            infoLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 20px; -fx-font-weight: bold; -fx-alignment: left;");
+
+            Label startIdLabel = new Label("Start Station: " + stationUtil.IDtoName(startId) + " (" + startId + ")"); 
+            startIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
+            Label endIdLabel = new Label("End Station: " + stationUtil.IDtoName(startId) + " (" + startId + ")");    
+            endIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");  
 
             // สร้าง Label สำหรับ PathBox1
             Label pathLabel1 = new Label("เส้นทาง: สถานี A -> สถานี B -> สถานี C");
@@ -402,22 +399,14 @@ public class GuiTest extends Application {
 
             Label priceLabel1 = new Label("ราคา: 45 บาท");
             priceLabel1.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
+            
+            VBox infoBox = new VBox(10); // ใช้ VBox ที่ถูกต้อง
+            infoBox.setStyle("-fx-alignment: left; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
+                    + "-fx-background-color: #f9f9f9; -fx-alignment: left; "
+                    + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
 
             // เพิ่มองค์ประกอบใน PathBox1
-            PathBox1.getChildren().addAll(pathLabel1, durationLabel1, priceLabel1);
-
-            // สร้าง Label สำหรับ PathBox2
-            Label pathLabel2 = new Label("เส้นทาง: สถานี X -> สถานี Y -> สถานี Z");
-            pathLabel2.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px; -fx-font-weight: bold;");
-
-            Label durationLabel2 = new Label("ระยะเวลา: 45 นาที");
-            durationLabel2.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
-
-            Label priceLabel2 = new Label("ราคา: 60 บาท");
-            priceLabel2.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
-
-            // เพิ่มองค์ประกอบใน PathBox2
-            PathBox2.getChildren().addAll(pathLabel2, durationLabel2, priceLabel2);
+            PathBox1.getChildren().addAll(infoLabel, startIdLabel, endIdLabel);
 
             Button backButton = new Button("กลับไปหน้าหลัก");
             backButton.setStyle("-fx-background-color: #003366; -fx-text-fill: white; -fx-font-weight: bold;");
@@ -428,7 +417,74 @@ public class GuiTest extends Application {
                 stage.setScene(scene); // กลับไปยัง Scene หลัก
             });
 
-            nextPage.getChildren().addAll(logoView1, projectName1, PathBox1, PathBox2, backButton);
+            nextPage.getChildren().addAll(logoView1, projectName1, PathBox1, backButton);
+
+            PathResult result = pathFinder.findShortestPath(startId, endId);
+            int i = 0;
+
+            if (result.getFullPath().isEmpty()) {
+                System.out
+                        .println("❌ ไม่พบเส้นทางจาก " + stationUtil.IDtoName(startId) + "(" + startId + ")" + " ไปยัง "
+                                + stationUtil.IDtoName(endId) + "(" + endId + ")");
+            } else {
+                System.out.println("✅ เจอเส้นทาง!");
+                System.out.println("เส้นทางเดินทั้งหมด:");
+
+                for (String stationId : result.getFullPath()) {
+                    Station station = stationMap.get(stationId);
+                    System.out.println("- " + station.getName() + " (" + station.getId() + ")");
+                    i++;
+                }
+
+                List<String> fullPath = result.getFullPath();
+                List<String> importantSteps = PathUtil.filterImportantStepsWithActualTransfers(fullPath, stationMap);
+
+                if (importantSteps.isEmpty()) {
+                    System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง | จำนวน " + i + " สถานี ");
+                    System.out.println(
+                            stationUtil.IDtoName(startId) + " (" + startId + ") ➜ " + stationUtil.IDtoName(endId)
+                                    + " (" + endId + ")");
+                } else {
+                    System.out.println("📍 เส้นทางนี้มีการเปลี่ยนสาย | จำนวน " + i + " สถานี");
+
+                    int k = 0;
+                    boolean firstStep = true;
+                    for (int j = 0; j < importantSteps.size(); j++) {
+                        String step = importantSteps.get(j);
+                        String[] parts = step.split("->");
+                        String fromId = parts[0];
+                        String toId = parts[1];
+
+                        String fromName = stationUtil.IDtoName(fromId);
+                        String toName = stationUtil.IDtoName(toId);
+
+                        if (!step.equals(startId) && k == 0) {
+                            System.out.print("🔄 " + stationUtil.IDtoName(startId) + " (" + startId + ") ➜ ");
+                            k++;
+                        }
+
+                        if (firstStep) {
+                            // เริ่มต้นจากสถานีต้นทางไปยังจุดเปลี่ยนสายแรก
+                            System.out.print(fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
+                            firstStep = false;
+                        } else {
+                            // แสดงเฉพาะจุดเปลี่ยนสายถัดไป
+                            System.out.print(" ➜ " + fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
+                        }
+                    }
+
+                    // จบด้วยปลายทางถ้ายังไม่ได้แสดง
+                    String lastToId = importantSteps.get(importantSteps.size() - 1).split("->")[1];
+                    if (!lastToId.equals(endId)) {
+                        System.out.print(" ➜ " + stationUtil.IDtoName(endId) + " (" + endId + ")");
+                    }
+
+                    System.out.println(); // ขึ้นบรรทัดใหม่
+                }
+
+                System.out.println("\n🕒 เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
+            }
+
 
             // สร้าง Scene ใหม่สำหรับหน้าถัดไป
             Scene nextScene = new Scene(nextPage);
