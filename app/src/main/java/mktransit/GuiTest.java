@@ -362,10 +362,24 @@ public class GuiTest extends Application {
                 return;
             }
 
+            PathResult result = pathFinder.findShortestPath(startId, endId);
+            int i = 0;
+
+            // Calculate path
+
             // สร้างหน้าถัดไป
             VBox nextPage = new VBox(20);
             nextPage.setStyle("-fx-alignment: center; -fx-padding: 20;");
             nextPage.setPrefSize(1530, 790); // ขนาดเริ่มต้น
+
+            // Logo
+            ImageView logoView1 = new ImageView(logoImage);
+            logoView1.setFitWidth(100); // กำหนดขนาดโลโก้
+            logoView1.setPreserveRatio(true);
+
+            // Project Name
+            Label projectName1 = new Label("MK Transit");
+            projectName1.setStyle("-fx-text-fill: #003366; -fx-font-size: 50px; -fx-font-weight: bold;");
 
             VBox PathBox1 = new VBox(10); // ใช้ VBox ที่ถูกต้อง
             PathBox1.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
@@ -379,6 +393,32 @@ public class GuiTest extends Application {
                     + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
             PathBox2.setMaxWidth(700);
 
+            // สร้าง Label สำหรับ PathBox1
+            Label pathLabel1 = new Label("เส้นทาง: สถานี A -> สถานี B -> สถานี C");
+            pathLabel1.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px; -fx-font-weight: bold;");
+
+            Label durationLabel1 = new Label("ระยะเวลา: 30 นาที");
+            durationLabel1.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
+
+            Label priceLabel1 = new Label("ราคา: 45 บาท");
+            priceLabel1.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
+
+            // เพิ่มองค์ประกอบใน PathBox1
+            PathBox1.getChildren().addAll(pathLabel1, durationLabel1, priceLabel1);
+
+            // สร้าง Label สำหรับ PathBox2
+            Label pathLabel2 = new Label("เส้นทาง: สถานี X -> สถานี Y -> สถานี Z");
+            pathLabel2.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px; -fx-font-weight: bold;");
+
+            Label durationLabel2 = new Label("ระยะเวลา: 45 นาที");
+            durationLabel2.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
+
+            Label priceLabel2 = new Label("ราคา: 60 บาท");
+            priceLabel2.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
+
+            // เพิ่มองค์ประกอบใน PathBox2
+            PathBox2.getChildren().addAll(pathLabel2, durationLabel2, priceLabel2);
+
             Button backButton = new Button("กลับไปหน้าหลัก");
             backButton.setStyle("-fx-background-color: #003366; -fx-text-fill: white; -fx-font-weight: bold;");
             VBox.setVgrow(backButton, Priority.ALWAYS); // อนุญาตให้ปุ่มขยายตัวตาม VBox
@@ -388,7 +428,7 @@ public class GuiTest extends Application {
                 stage.setScene(scene); // กลับไปยัง Scene หลัก
             });
 
-            nextPage.getChildren().addAll(PathBox1, PathBox2, backButton);
+            nextPage.getChildren().addAll(logoView1, projectName1, PathBox1, PathBox2, backButton);
 
             // สร้าง Scene ใหม่สำหรับหน้าถัดไป
             Scene nextScene = new Scene(nextPage);

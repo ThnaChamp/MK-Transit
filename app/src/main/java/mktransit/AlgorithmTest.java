@@ -3,7 +3,6 @@ package mktransit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import mktransit.*;
 
 public class AlgorithmTest {
     public static void main(String[] args) {
@@ -29,7 +28,7 @@ public class AlgorithmTest {
         // ลองหาเส้นทางที่ "ไม่ผ่าน interchange"
 
         String startId = "CEN";
-        String endId = "YL01";
+        String endId = "BL36";
 
         PathResult result = pathFinder.findShortestPath(startId, endId);
         int i=0;
