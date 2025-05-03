@@ -2,7 +2,7 @@
   "lines": [
     {
       "name": "BTS_SUKHUMVIT",
-      "color": "lightgreen",
+      "color": "#84c469",
       "stations": [
         {
           "id": "N24",
@@ -397,7 +397,7 @@
     },
     {
       "name": "BTS_SILOM",
-      "color": "darkgreen",
+      "color": "#328674",
       "stations": [
         {
           "id": "W1",
@@ -522,7 +522,7 @@
     },
     {
       "name": "GOLD_LINE",
-      "color": "gold",
+      "color": "#ad9f51",
       "stations": [
         {
           "id": "G3",
@@ -552,7 +552,7 @@
     },
     {
       "name": "SRT_RED",
-      "color": "red",
+      "color": "#cd6060",
       "stations": [
         {
           "id": "RN01",
@@ -676,7 +676,7 @@
     },
     {
       "name": "MRT_BLUE",
-      "color": "blue",
+      "color": "#063b82",
       "stations": [
         {
           "id": "BL38",
@@ -1005,7 +1005,7 @@
     },
     {
       "name": "ARL",
-      "color": "darkred",
+      "color": "#690606",
       "stations": [
         {
           "id": "A1",
@@ -1078,7 +1078,7 @@
     },
     {
       "name": "MRT_PINK",
-      "color": "pink",
+      "color": "#cb4e9b",
       "stations": [
         {
           "id": "PK01",
@@ -1328,7 +1328,7 @@
     },
     {
       "name": "MRT_YELLOW",
-      "color": "yellow",
+      "color": "#edd240",
       "stations": [
         {
           "id": "YL01",
@@ -1522,7 +1522,7 @@
     },
    {
     "name": "MRT_PURPLE",
-    "color": "purple",
+    "color": "#854289",
     "stations": [
       {
         "id": "PP01",
