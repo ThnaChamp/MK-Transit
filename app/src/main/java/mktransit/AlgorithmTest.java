@@ -25,8 +25,9 @@ public class AlgorithmTest {
         // System.out.println(stationName); // จะได้ "สยาม" (ถ้าข้อมูลมีใน JSON)
 
         // ลองหาเส้นทางที่ "ไม่ผ่าน interchange"
-        String startId = "N23";
-        String endId = "ํYL01";
+
+        String startId = "BL06";
+        String endId = "YL05";
 
         PathResult result = pathFinder.findShortestPath(startId, endId);
         int i = 0;

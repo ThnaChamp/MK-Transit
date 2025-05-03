@@ -383,12 +383,11 @@ public class GuiTest extends Application {
             PathBox1.setMaxWidth(700);
 
             Label infoLabel = new Label("Travel Information:");
-            infoLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 20px; -fx-font-weight: bold; -fx-alignment: left;");
+            infoLabel.setStyle(
+                    "-fx-text-fill: #003366; -fx-font-size: 20px; -fx-font-weight: bold; -fx-alignment: left;");
 
-            Label startIdLabel = new Label("Start Station: " + stationUtil.IDtoName(startId) + " (" + startId + ")"); 
-            startIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
-            Label endIdLabel = new Label("End Station: " + stationUtil.IDtoName(startId) + " (" + startId + ")");    
-            endIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");  
+            Label startIdLabel;
+            Label endIdLabel;
 
             // สร้าง Label สำหรับ PathBox1
             Label pathLabel1 = new Label("เส้นทาง: สถานี A -> สถานี B -> สถานี C");
@@ -399,14 +398,11 @@ public class GuiTest extends Application {
 
             Label priceLabel1 = new Label("ราคา: 45 บาท");
             priceLabel1.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
-            
+
             VBox infoBox = new VBox(10); // ใช้ VBox ที่ถูกต้อง
             infoBox.setStyle("-fx-alignment: left; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
                     + "-fx-background-color: #f9f9f9; -fx-alignment: left; "
                     + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
-
-            // เพิ่มองค์ประกอบใน PathBox1
-            PathBox1.getChildren().addAll(infoLabel, startIdLabel, endIdLabel);
 
             Button backButton = new Button("กลับไปหน้าหลัก");
             backButton.setStyle("-fx-background-color: #003366; -fx-text-fill: white; -fx-font-weight: bold;");
@@ -431,19 +427,29 @@ public class GuiTest extends Application {
                 System.out.println("เส้นทางเดินทั้งหมด:");
 
                 for (String stationId : result.getFullPath()) {
-                    Station station = stationMap.get(stationId);
-                    System.out.println("- " + station.getName() + " (" + station.getId() + ")");
-                    i++;
+                Station station = stationMap.get(stationId);
+                System.out.println("- " + station.getName() + " (" + station.getId() + ")");
+                i++;
                 }
 
                 List<String> fullPath = result.getFullPath();
                 List<String> importantSteps = PathUtil.filterImportantStepsWithActualTransfers(fullPath, stationMap);
 
                 if (importantSteps.isEmpty()) {
-                    System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง | จำนวน " + i + " สถานี ");
+                    System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง");
                     System.out.println(
                             stationUtil.IDtoName(startId) + " (" + startId + ") ➜ " + stationUtil.IDtoName(endId)
                                     + " (" + endId + ")");
+
+                    startIdLabel = new Label(
+                            "Start Station: " + stationUtil.IDtoName(startId) + " (" + startId + ")");
+                    startIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
+                    endIdLabel = new Label(
+                            "End Station: " + stationUtil.IDtoName(endId) + " (" + endId + ")");
+                    endIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
+
+                    // เพิ่มองค์ประกอบใน PathBox1
+                    PathBox1.getChildren().addAll(infoLabel, startIdLabel, endIdLabel);
                 } else {
                     System.out.println("📍 เส้นทางนี้มีการเปลี่ยนสาย | จำนวน " + i + " สถานี");
 
@@ -484,7 +490,6 @@ public class GuiTest extends Application {
 
                 System.out.println("\n🕒 เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
             }
-
 
             // สร้าง Scene ใหม่สำหรับหน้าถัดไป
             Scene nextScene = new Scene(nextPage);
