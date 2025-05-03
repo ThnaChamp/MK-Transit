@@ -34,7 +34,6 @@ public class GuiTest extends Application {
         JsonReader reader = new JsonReader();
         reader.loadJsonData(); // แค่โหลด
 
-        List<Line> lines = reader.getLines(); // ดึงข้อมูล Line
         Map<String, Station> stationMap = reader.getStationMap(); // ดึงข้อมูล Station
 
         PathFinder pathFinder = new PathFinder(stationMap);
@@ -427,20 +426,19 @@ public class GuiTest extends Application {
                 System.out.println("เส้นทางเดินทั้งหมด:");
 
                 for (String stationId : result.getFullPath()) {
-                Station station = stationMap.get(stationId);
-                System.out.println("- " + station.getName() + " (" + station.getId() + ")");
-                i++;
+                    Station station = stationMap.get(stationId);
+                    System.out.println("- " + station.getName() + " (" + station.getId() + ")");
+                    i++;
                 }
 
                 List<String> fullPath = result.getFullPath();
                 List<String> importantSteps = PathUtil.filterImportantStepsWithActualTransfers(fullPath, stationMap);
 
                 if (importantSteps.isEmpty()) {
-                    System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง");
+                    System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง | จำนวน " + i + " สถานี ");
                     System.out.println(
                             stationUtil.IDtoName(startId) + " (" + startId + ") ➜ " + stationUtil.IDtoName(endId)
                                     + " (" + endId + ")");
-
                     startIdLabel = new Label(
                             "Start Station: " + stationUtil.IDtoName(startId) + " (" + startId + ")");
                     startIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
