@@ -34,7 +34,6 @@ public class GuiTest extends Application {
         JsonReader reader = new JsonReader();
         reader.loadJsonData(); // แค่โหลด
 
-        List<Line> lines = reader.getLines(); // ดึงข้อมูล Line
         Map<String, Station> stationMap = reader.getStationMap(); // ดึงข้อมูล Station
 
         PathFinder pathFinder = new PathFinder(stationMap);
@@ -210,31 +209,31 @@ public class GuiTest extends Application {
                 }
 
                 switch (someStation.getColor()) {
-                    case "blue":
+                    case "#063b82":
                         circleStation1.setStyle("-fx-fill: #063b82;"); // สีแดง
                         break;
-                    case "lightgreen":
+                    case "#84c469":
                         circleStation1.setStyle("-fx-fill: #84c469;"); // สีเขียวอ่อน
                         break;
-                    case "darkgreen":
+                    case "#328674":
                         circleStation1.setStyle("-fx-fill: #328674;"); // สีเขียวเข้ม
                         break;
-                    case "yellow":
+                    case "#edd240":
                         circleStation1.setStyle("-fx-fill: #edd240;"); // สีเหลือง
                         break;
-                    case "purple":
+                    case "#854289":
                         circleStation1.setStyle("-fx-fill: #854289;"); // สีม่วง
                         break;
-                    case "darkred":
+                    case "#690606":
                         circleStation1.setStyle("-fx-fill: #690606;"); // สีแดงเข้ม
                         break;
-                    case "pink":
+                    case "#cb4e9b":
                         circleStation1.setStyle("-fx-fill: #cb4e9b;"); // สีชมพู
                         break;
-                    case "red":
+                    case "#cd6060":
                         circleStation1.setStyle("-fx-fill: #cd6060;"); // สีแดง
                         break;
-                    case "gold":
+                    case "#ad9f51":
                         circleStation1.setStyle("-fx-fill: #ad9f51;"); // สีทอง
                         break;
                     default:
@@ -291,31 +290,31 @@ public class GuiTest extends Application {
                 }
 
                 switch (someStation.getColor()) {
-                    case "blue":
+                    case "#063b82":
                         circleStation2.setStyle("-fx-fill: #063b82;"); // สีแดง
                         break;
-                    case "lightgreen":
+                    case "#84c469":
                         circleStation2.setStyle("-fx-fill: #84c469;"); // สีเขียวอ่อน
                         break;
-                    case "darkgreen":
+                    case "#328674":
                         circleStation2.setStyle("-fx-fill: #328674;"); // สีเขียวเข้ม
                         break;
-                    case "yellow":
+                    case "#edd240":
                         circleStation2.setStyle("-fx-fill: #edd240;"); // สีเหลือง
                         break;
-                    case "purple":
+                    case "#854289":
                         circleStation2.setStyle("-fx-fill: #854289;"); // สีม่วง
                         break;
-                    case "darkred":
+                    case "#690606":
                         circleStation2.setStyle("-fx-fill: #690606;"); // สีแดงเข้ม
                         break;
-                    case "pink":
+                    case "#cb4e9b":
                         circleStation2.setStyle("-fx-fill: #cb4e9b;"); // สีชมพู
                         break;
-                    case "red":
+                    case "#cd6060":
                         circleStation2.setStyle("-fx-fill: #cd6060;"); // สีแดง
                         break;
-                    case "gold":
+                    case "#ad9f51":
                         circleStation2.setStyle("-fx-fill: #ad9f51;"); // สีทอง
                         break;
                     default:
@@ -357,6 +356,9 @@ public class GuiTest extends Application {
             String startId = textField1.getText().trim(); // ดึงค่า Start Station ID
             String endId = textField2.getText().trim(); // ดึงค่า End Station ID
 
+            startId = startId.toUpperCase();
+            endId = endId.toUpperCase();
+
             if (startId.isEmpty() || endId.isEmpty()) {
                 System.out.println("กรุณากรอกข้อมูลให้ครบถ้วน!"); // แสดงข้อความเมื่อไม่มีการป้อนข้อมูล
                 return;
@@ -376,11 +378,11 @@ public class GuiTest extends Application {
             Label projectName1 = new Label("MK Transit");
             projectName1.setStyle("-fx-text-fill: #003366; -fx-font-size: 50px; -fx-font-weight: bold;");
 
-            VBox PathBox1 = new VBox(10); // ใช้ VBox ที่ถูกต้อง
-            PathBox1.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
-                    + "-fx-background-color: #f9f9f9; -fx-alignment: center; "
+            VBox PathBox1 = new VBox(7); // ใช้ VBox ที่ถูกต้อง
+            PathBox1.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 25 0 25 25; "
+                    + "-fx-background-color: #f9f9f9; -fx-alignment: left; "
                     + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
-            PathBox1.setMaxWidth(700);
+            PathBox1.setMaxWidth(400);
 
             Label infoLabel = new Label("Travel Information:");
             infoLabel.setStyle(
@@ -402,7 +404,7 @@ public class GuiTest extends Application {
             VBox infoBox = new VBox(10); // ใช้ VBox ที่ถูกต้อง
             infoBox.setStyle("-fx-alignment: left; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
                     + "-fx-background-color: #f9f9f9; -fx-alignment: left; "
-                    + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
+                    + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 7;");
 
             Button backButton = new Button("กลับไปหน้าหลัก");
             backButton.setStyle("-fx-background-color: #003366; -fx-text-fill: white; -fx-font-weight: bold;");
@@ -427,34 +429,127 @@ public class GuiTest extends Application {
                 System.out.println("เส้นทางเดินทั้งหมด:");
 
                 for (String stationId : result.getFullPath()) {
-                Station station = stationMap.get(stationId);
-                System.out.println("- " + station.getName() + " (" + station.getId() + ")");
-                i++;
+                    Station station = stationMap.get(stationId);
+                    System.out.println("- " + station.getName() + " (" + station.getId() + ")");
+                    i++;
                 }
 
                 List<String> fullPath = result.getFullPath();
                 List<String> importantSteps = PathUtil.filterImportantStepsWithActualTransfers(fullPath, stationMap);
 
+                VBox circleBox1 = new VBox(2); // ระยะห่างระหว่างวงกลม
+                circleBox.setStyle("-fx-alignment: center;"); // จัดให้อยู่ตรงกลาง
+
+                Circle circle11 = new Circle(3); // วงกลมขนาดรัศมี 10
+                circle11.setStyle("-fx-fill:rgb(203, 203, 203);"); // สีแดง
+
+                Circle circle21 = new Circle(3); // วงกลมขนาดรัศมี 10
+                circle21.setStyle("-fx-fill:rgb(203, 203, 203);"); // สีเขียว
+
+                Circle circle31 = new Circle(3); // วงกลมขนาดรัศมี 10
+                circle31.setStyle("-fx-fill:rgb(203, 203, 203);"); // สีน้ำเงิน
+
+                // เพิ่มวงกลมเข้าไปใน HBox
+                circleBox1.getChildren().addAll(circle11, circle21, circle31);
+
+                Circle circleStation11 = new Circle(5);
+                Circle circleStation21 = new Circle(5);
+
+                HBox startStationBox = new HBox(5);
+                startStationBox.setSpacing(5);
+                startStationBox.setStyle("-fx-alignment: center-left;");
+                HBox endStationBox = new HBox(5);
+                endStationBox.setSpacing(5);
+                endStationBox.setStyle("-fx-alignment: center-left;");
+
+                Label intro1 = new Label("Start Station:");
+                Label intro2 = new Label("End Station:");
+
                 if (importantSteps.isEmpty()) {
-                    System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง");
-                    System.out.println(
-                            stationUtil.IDtoName(startId) + " (" + startId + ") ➜ " + stationUtil.IDtoName(endId)
-                                    + " (" + endId + ")");
+                    Station someStation = stationMap.get(startId);
+                    System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง | จำนวน " + i + " สถานี ");
 
-                    startIdLabel = new Label(
-                            "Start Station: " + stationUtil.IDtoName(startId) + " (" + startId + ")");
+                    startIdLabel = new Label(stationUtil.IDtoName(startId) + " (" + startId + ")");
                     startIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
-                    endIdLabel = new Label(
-                            "End Station: " + stationUtil.IDtoName(endId) + " (" + endId + ")");
+                    circleStation11.setStyle("-fx-fill: " + someStation.getColor() + ";");
+                    startStationBox.getChildren().addAll(startIdLabel, circleStation11);
+                    someStation = stationMap.get(endId);
+                    endIdLabel = new Label(stationUtil.IDtoName(endId) + " (" + endId + ")");
                     endIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
-
+                    circleStation21.setStyle("-fx-fill: " + someStation.getColor() + ";");
+                    endStationBox.getChildren().addAll(endIdLabel, circleStation21);
                     // เพิ่มองค์ประกอบใน PathBox1
-                    PathBox1.getChildren().addAll(infoLabel, startIdLabel, endIdLabel);
+                    PathBox1.getChildren().addAll(infoLabel, intro1, startStationBox, circleBox1, intro2,
+                            endStationBox);
                 } else {
+                    Station someStation = stationMap.get(startId);
                     System.out.println("📍 เส้นทางนี้มีการเปลี่ยนสาย | จำนวน " + i + " สถานี");
+                    startIdLabel = new Label(stationUtil.IDtoName(startId) + " (" + startId + ")");
+                    startIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
+                    circleStation11.setStyle("-fx-fill: " + someStation.getColor() + ";");
+                    startStationBox.getChildren().addAll(startIdLabel, circleStation11);
+                    someStation = stationMap.get(endId);
+                    endIdLabel = new Label(stationUtil.IDtoName(endId) + " (" + endId + ")");
+                    endIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
+                    circleStation21.setStyle("-fx-fill: " + someStation.getColor() + ";");
+                    endStationBox.getChildren().addAll(endIdLabel, circleStation21);
 
-                    int k = 0;
-                    boolean firstStep = true;
+                    StringBuilder routeInfo = new StringBuilder(); // ใช้ StringBuilder เพื่อเก็บข้อความทั้งหมด
+
+                    if (importantSteps.isEmpty()) {
+                        routeInfo.append("📍 No interchanges required | Total stations: ").append(i).append("\n");
+                        routeInfo.append(stationUtil.IDtoName(startId)).append(" (").append(startId).append(") ➜ ")
+                                .append(stationUtil.IDtoName(endId)).append(" (").append(endId).append(")");
+                    } else {
+                        routeInfo.append("📍 This route has interchanges | Total stations: ").append(i).append("\n");
+
+                        int k = 0;
+                        boolean firstStep = true;
+                        for (int j = 0; j < importantSteps.size(); j++) {
+                            String step = importantSteps.get(j);
+                            String[] parts = step.split("->");
+                            String fromId = parts[0];
+                            String toId = parts[1];
+
+                            String fromName = stationUtil.IDtoName(fromId);
+                            String toName = stationUtil.IDtoName(toId);
+
+                            if (!step.equals(startId) && k == 0) {
+                                routeInfo.append("🔄 ").append(stationUtil.IDtoName(startId)).append(" (")
+                                        .append(startId).append(") ➜ \n");
+                                k++;
+                            }
+
+                            if (firstStep) {
+                                routeInfo.append(fromName).append(" (").append(fromId).append(") ➜ \n").append(toName)
+                                        .append(" (").append(toId).append(")");
+                                firstStep = false;
+                            } else {
+                                routeInfo.append(" ➜ \n").append(fromName).append(" (").append(fromId).append(") ➜ \n")
+                                        .append(toName).append(" (").append(toId).append(")");
+                            }
+                        }
+
+                        // จบด้วยปลายทางถ้ายังไม่ได้แสดง
+                        String lastToId = importantSteps.get(importantSteps.size() - 1).split("->")[1];
+                        if (!lastToId.equals(endId)) {
+                            routeInfo.append(" ➜ \n").append(stationUtil.IDtoName(endId)).append(" (").append(endId)
+                                    .append(")");
+                        }
+                    }
+
+                    // เพิ่มข้อความทั้งหมดใน routeInfoLabel
+                    Label routeInfoLabel = new Label(routeInfo.toString());
+                    routeInfoLabel.setStyle(
+                            "-fx-alignment: left; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 10 25 10 10; "
+                                    + "-fx-background-color:rgb(230, 230, 230); -fx-alignment: left; "
+                                    + "-fx-background-radius: 5;");
+
+                    // สร้าง VBox สำหรับแสดงเส้นทาง
+                    VBox routeInfoBox = new VBox(10); // ระยะห่างระหว่างแต่ละสถานี
+                    routeInfoBox.setStyle("-fx-padding: 10; -fx-alignment: left;");
+
+                    // วนลูปเพื่อสร้าง HBox สำหรับแต่ละสถานี
                     for (int j = 0; j < importantSteps.size(); j++) {
                         String step = importantSteps.get(j);
                         String[] parts = step.split("->");
@@ -464,28 +559,51 @@ public class GuiTest extends Application {
                         String fromName = stationUtil.IDtoName(fromId);
                         String toName = stationUtil.IDtoName(toId);
 
-                        if (!step.equals(startId) && k == 0) {
-                            System.out.print("🔄 " + stationUtil.IDtoName(startId) + " (" + startId + ") ➜ ");
-                            k++;
-                        }
-
-                        if (firstStep) {
-                            // เริ่มต้นจากสถานีต้นทางไปยังจุดเปลี่ยนสายแรก
-                            System.out.print(fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
-                            firstStep = false;
+                        // สร้าง Circle สำหรับสถานีต้นทาง
+                        Station fromStation = stationMap.get(fromId);
+                        Circle fromCircle = new Circle(5); // ขนาดรัศมี 5
+                        if (fromStation != null) {
+                            fromCircle.setStyle("-fx-fill: " + fromStation.getColor() + ";");
                         } else {
-                            // แสดงเฉพาะจุดเปลี่ยนสายถัดไป
-                            System.out.print(" ➜ " + fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
+                            fromCircle.setStyle("-fx-fill: transparent;"); // หากไม่มีข้อมูลสี
                         }
+
+                        // สร้าง Label สำหรับสถานีต้นทาง
+                        Label fromLabel = new Label(fromName + " (" + fromId + ")");
+                        fromLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
+
+                        // สร้าง HBox สำหรับสถานีต้นทาง
+                        HBox fromBox = new HBox(10); // ระยะห่างระหว่าง Circle และ Label
+                        fromBox.setStyle("-fx-alignment: center-left;");
+                        fromBox.getChildren().addAll(fromCircle, fromLabel);
+
+                        // เพิ่ม HBox ของสถานีต้นทางเข้าไปใน VBox
+                        routeInfoBox.getChildren().add(fromBox);
+
+                        // สร้าง Circle สำหรับสถานีปลายทาง
+                        Station toStation = stationMap.get(toId);
+                        Circle toCircle = new Circle(5); // ขนาดรัศมี 5
+                        if (toStation != null) {
+                            toCircle.setStyle("-fx-fill: " + toStation.getColor() + ";");
+                        } else {
+                            toCircle.setStyle("-fx-fill: transparent;"); // หากไม่มีข้อมูลสี
+                        }
+
+                        // สร้าง Label สำหรับสถานีปลายทาง
+                        Label toLabel = new Label(toName + " (" + toId + ")");
+                        toLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
+
+                        // สร้าง HBox สำหรับสถานีปลายทาง
+                        HBox toBox = new HBox(10); // ระยะห่างระหว่าง Circle และ Label
+                        toBox.setStyle("-fx-alignment: center-left;");
+                        toBox.getChildren().addAll(toCircle, toLabel);
+
+                        // เพิ่ม HBox ของสถานีปลายทางเข้าไปใน VBox
+                        routeInfoBox.getChildren().add(toBox);
                     }
 
-                    // จบด้วยปลายทางถ้ายังไม่ได้แสดง
-                    String lastToId = importantSteps.get(importantSteps.size() - 1).split("->")[1];
-                    if (!lastToId.equals(endId)) {
-                        System.out.print(" ➜ " + stationUtil.IDtoName(endId) + " (" + endId + ")");
-                    }
-
-                    System.out.println(); // ขึ้นบรรทัดใหม่
+                    // เพิ่ม VBox (routeInfoBox) เข้าไปใน PathBox1
+                    PathBox1.getChildren().addAll(infoLabel, intro1, startStationBox, circleBox1, intro2, endStationBox, routeInfoBox);
                 }
 
                 System.out.println("\n🕒 เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
