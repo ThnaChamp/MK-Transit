@@ -192,13 +192,12 @@
           "name": "Ratchathewi",
           "connections": [
             { "to": "N2", "time": 2 },
-            { "to": "CEN", "time": 2 , "type" : "interchange"}
+            { "to": "CEN", "time": 2 }
           ]
         },
         {
           "id": "CEN",
           "name": "Siam",
-          "interchange": true,
           "connections": [
             { "to": "N1", "time": 2 },
             { "to": "E1", "time": 2 },
@@ -210,7 +209,7 @@
           "id": "E1",
           "name": "Chit-Lom",
           "connections": [
-            { "to": "CEN", "time": 2 , "type" : "interchange"},
+            { "to": "CEN", "time": 2 },
             { "to": "E2", "time": 2 }
           ]
         },
@@ -403,13 +402,12 @@
           "id": "W1",
           "name": "National-Stadium",
           "connections": [
-            { "to": "CEN", "time": 3 , "type" : "interchange"}
+            { "to": "CEN", "time": 3 }
           ]
         },
         {
           "id": "CEN",
           "name": "Siam",
-          "interchange": true,
           "connections": [
             { "to": "W1", "time": 1 },
             { "to": "S1", "time": 3 },
@@ -421,7 +419,7 @@
           "id": "S1",
           "name": "Ratchadamri",
           "connections": [
-            { "to": "CEN", "time": 3 , "type" : "interchange"},
+            { "to": "CEN", "time": 3 },
             { "to": "S2", "time": 3 }
           ]
         },
