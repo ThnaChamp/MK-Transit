@@ -545,9 +545,65 @@ public class GuiTest extends Application {
                                     + "-fx-background-color:rgb(230, 230, 230); -fx-alignment: left; "
                                     + "-fx-background-radius: 5;");
 
-                    // เพิ่มองค์ประกอบใน PathBox1
-                    PathBox1.getChildren().addAll(infoLabel, intro1, startStationBox, circleBox1, intro2,
-                            endStationBox, routeInfoLabel);
+                    // สร้าง VBox สำหรับแสดงเส้นทาง
+                    VBox routeInfoBox = new VBox(10); // ระยะห่างระหว่างแต่ละสถานี
+                    routeInfoBox.setStyle("-fx-padding: 10; -fx-alignment: left;");
+
+                    // วนลูปเพื่อสร้าง HBox สำหรับแต่ละสถานี
+                    for (int j = 0; j < importantSteps.size(); j++) {
+                        String step = importantSteps.get(j);
+                        String[] parts = step.split("->");
+                        String fromId = parts[0];
+                        String toId = parts[1];
+
+                        String fromName = stationUtil.IDtoName(fromId);
+                        String toName = stationUtil.IDtoName(toId);
+
+                        // สร้าง Circle สำหรับสถานีต้นทาง
+                        Station fromStation = stationMap.get(fromId);
+                        Circle fromCircle = new Circle(5); // ขนาดรัศมี 5
+                        if (fromStation != null) {
+                            fromCircle.setStyle("-fx-fill: " + fromStation.getColor() + ";");
+                        } else {
+                            fromCircle.setStyle("-fx-fill: transparent;"); // หากไม่มีข้อมูลสี
+                        }
+
+                        // สร้าง Label สำหรับสถานีต้นทาง
+                        Label fromLabel = new Label(fromName + " (" + fromId + ")");
+                        fromLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
+
+                        // สร้าง HBox สำหรับสถานีต้นทาง
+                        HBox fromBox = new HBox(10); // ระยะห่างระหว่าง Circle และ Label
+                        fromBox.setStyle("-fx-alignment: center-left;");
+                        fromBox.getChildren().addAll(fromCircle, fromLabel);
+
+                        // เพิ่ม HBox ของสถานีต้นทางเข้าไปใน VBox
+                        routeInfoBox.getChildren().add(fromBox);
+
+                        // สร้าง Circle สำหรับสถานีปลายทาง
+                        Station toStation = stationMap.get(toId);
+                        Circle toCircle = new Circle(5); // ขนาดรัศมี 5
+                        if (toStation != null) {
+                            toCircle.setStyle("-fx-fill: " + toStation.getColor() + ";");
+                        } else {
+                            toCircle.setStyle("-fx-fill: transparent;"); // หากไม่มีข้อมูลสี
+                        }
+
+                        // สร้าง Label สำหรับสถานีปลายทาง
+                        Label toLabel = new Label(toName + " (" + toId + ")");
+                        toLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
+
+                        // สร้าง HBox สำหรับสถานีปลายทาง
+                        HBox toBox = new HBox(10); // ระยะห่างระหว่าง Circle และ Label
+                        toBox.setStyle("-fx-alignment: center-left;");
+                        toBox.getChildren().addAll(toCircle, toLabel);
+
+                        // เพิ่ม HBox ของสถานีปลายทางเข้าไปใน VBox
+                        routeInfoBox.getChildren().add(toBox);
+                    }
+
+                    // เพิ่ม VBox (routeInfoBox) เข้าไปใน PathBox1
+                    PathBox1.getChildren().addAll(infoLabel, intro1, startStationBox, circleBox1, intro2, endStationBox, routeInfoBox);
                 }
 
                 System.out.println("\n🕒 เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
