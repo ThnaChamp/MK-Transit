@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GuiTest1",
+            "request": "launch",
+            "mainClass": "mktransit.GuiTest1",
+            "projectName": "app"
+        },
+        {
+            "type": "java",
             "name": "GuiTest",
             "request": "launch",
             "mainClass": "mktransit.GuiTest",
