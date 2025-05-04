@@ -39,13 +39,10 @@ public class GuiTest extends Application {
         reader.loadJsonData(); // แค่โหลด
 
         Map<String, Station> stationMap = reader.getStationMap(); // ดึงข้อมูล Station
-
         PathFinder pathFinder = new PathFinder(stationMap);
-
         // โหลดสถานีมาจาก JsonReader
         List<Station> stationList = new ArrayList<>(reader.getStationMap().values());
         StationUtil stationUtil = new StationUtil(stationList);
-
         HBox root = new HBox();
 
         Scene scene = new Scene(root, 1530, 790);
@@ -249,7 +246,6 @@ public class GuiTest extends Application {
             if (newValue.isEmpty()) {
                 stationName2.setText("");
                 textField2.setStyle(""); // ล้างชื่อสถานีหากไม่มีการป้อนข้อมูล
-                textField2Box.getChildren().remove(stationName2);
                 return;
             }
 
@@ -315,411 +311,46 @@ public class GuiTest extends Application {
         // Add action for buttons
         submitButton.setOnAction(event -> {
             String startId = textField1.getText().trim(); // ดึงค่า Start Station ID
-            String endId = textField2.getText().trim(); // ดึงค่า End Station ID
-
-            startId = startId.toUpperCase();
-            endId = endId.toUpperCase();
-
+            String endId = textField2.getText().trim();   // ดึงค่า End Station ID
+        
             if (startId.isEmpty() || endId.isEmpty()) {
-                System.out.println("กรุณากรอกข้อมูลให้ครบถ้วน!"); // แสดงข้อความเมื่อไม่มีการป้อนข้อมูล
+                System.out.println("Karuna Krak Hai Krop Tuan!"); // แสดงข้อความเมื่อไม่มีการป้อนข้อมูล
                 return;
             }
-
-            // สร้างหน้าถัดไป
-            HBox nextPage = new HBox(30);
-            nextPage.setStyle("-fx-alignment: center; -fx-padding: 20;");
-            nextPage.setPrefSize(1530, 790); // ขนาดเริ่มต้น
-
-            // ---------- ซ้าย ----------
-            VBox leftPane1 = new VBox(20);
-            leftPane1.setStyle("-fx-alignment: center; -fx-padding: 20;");
-            leftPane1.setPrefWidth(750); // กำหนดความกว้างของฝั่งซ้าย
-
-            // Logo
-            ImageView logoView1 = new ImageView(logoImage);
-            logoView1.setFitWidth(100); // กำหนดขนาดโลโก้
-            logoView1.setPreserveRatio(true);
-
-            // Project Name
-            Label projectName1 = new Label("MK Transit");
-            projectName1.setStyle("-fx-text-fill: #003366; -fx-font-size: 50px; -fx-font-weight: bold;");
-
-            // เพิ่มองค์ประกอบในฝั่งซ้าย
-            leftPane1.getChildren().addAll(logoView1, projectName1);
-
-            VBox rightPane1 = new VBox(30);
-            rightPane1.setStyle("-fx-alignment: center; -fx-padding: 20;");
-            rightPane1.setPrefWidth(750);
-
-            VBox PathBox1 = new VBox(7); // ใช้ VBox ที่ถูกต้อง
-            PathBox1.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 20 0 20 25; "
-                    + "-fx-background-color: #f9f9f9; -fx-alignment: left; "
-                    + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 10;");
-            PathBox1.setMaxWidth(400);
-
-            Label infoLabel = new Label("Travel Information:");
-            infoLabel.setStyle(
-                    "-fx-text-fill: #003366; -fx-font-size: 15px; -fx-font-weight: bold; -fx-alignment: left;");
-
-            Label startIdLabel;
-            Label endIdLabel;
-
-            VBox infoBox = new VBox(10); // ใช้ VBox ที่ถูกต้อง
-            infoBox.setStyle("-fx-alignment: left; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 0 0 25 0; "
-                    + "-fx-background-color: #f9f9f9; -fx-alignment: left; "
-                    + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 5); -fx-background-radius: 7;");
-
-            Button backButton = new Button("Back to Main Menu");
-            backButton.setStyle("-fx-background-color: #003366; -fx-text-fill: white; -fx-font-weight: bold;");
-            VBox.setVgrow(backButton, Priority.ALWAYS); // อนุญาตให้ปุ่มขยายตัวตาม VBox
-
-            // กดปุ่ม Back เพื่อกลับไปหน้าหลัก
-            backButton.setOnAction(e -> {
-                stage.setScene(scene); // กลับไปยัง Scene หลัก
-            });
-
-            rightPane1.getChildren().addAll(PathBox1, backButton);
-            nextPage.getChildren().addAll(leftPane1, rightPane1);
-
+        
             PathResult result = pathFinder.findShortestPath(startId, endId);
-            int i = 0;
-
+        
             if (result.getFullPath().isEmpty()) {
-                Label errorLabel = new Label(
-                        "❌ Route not found from " + stationUtil.IDtoName(startId) + " (" + startId + ")" + " to "
-                                + stationUtil.IDtoName(endId) + " (" + endId + ")");
-                errorLabel.setStyle(
-                        "-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left; -fx-text-fill: red;");
-                PathBox1.setMaxWidth(600);
-                PathBox1.getChildren().add(errorLabel);
-
+                System.out.println(" Mai Pop Sen Tang " + startId + " ไปยัง " + endId);
             } else {
-                System.out.println("✅ เจอเส้นทาง!");
+                System.out.println(" Jur Sen Tang");
                 System.out.println("เส้นทางเดินทั้งหมด:");
-
+        
                 for (String stationId : result.getFullPath()) {
                     Station station = stationMap.get(stationId);
                     System.out.println("- " + station.getName() + " (" + station.getId() + ")");
-                    i++;
                 }
-
-                List<String> fullPath = result.getFullPath();
-                List<String> importantSteps = PathUtil.filterImportantStepsWithActualTransfers(fullPath, stationMap);
-
-                VBox circleBox1 = new VBox(2); // ระยะห่างระหว่างวงกลม
-                circleBox.setStyle("-fx-alignment: center;"); // จัดให้อยู่ตรงกลาง
-
-                Circle circle11 = new Circle(3); // วงกลมขนาดรัศมี 10
-                circle11.setStyle("-fx-fill:rgb(203, 203, 203);"); // สีแดง
-
-                Circle circle21 = new Circle(3); // วงกลมขนาดรัศมี 10
-                circle21.setStyle("-fx-fill:rgb(203, 203, 203);"); // สีเขียว
-
-                Circle circle31 = new Circle(3); // วงกลมขนาดรัศมี 10
-                circle31.setStyle("-fx-fill:rgb(203, 203, 203);"); // สีน้ำเงิน
-
-                // เพิ่มวงกลมเข้าไปใน HBox
-                circleBox1.getChildren().addAll(circle11, circle21, circle31);
-
-                Circle circleStation11 = new Circle(7);
-                Circle circleStation21 = new Circle(7);
-
-                HBox startStationBox = new HBox(5);
-                startStationBox.setSpacing(5);
-                startStationBox.setStyle("-fx-alignment: center-left;");
-                HBox endStationBox = new HBox(5);
-                endStationBox.setSpacing(5);
-                endStationBox.setStyle("-fx-alignment: center-left;");
-
-                Label intro1 = new Label("Start Station:");
-                Label intro2 = new Label("End Station:");
-
-                if (importantSteps.isEmpty()) {
-                    Station someStation = stationMap.get(startId);
-
-                    startIdLabel = new Label("⚲ " + stationUtil.IDtoName(startId) + " (" + startId + ")");
-                    startIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
-
-                    if (someStation.getId().equals("CEN")) {
-                        // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
-                        circleStation11.setFill(new LinearGradient(
-                                0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                                new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
-                                new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
-                        ));
+        
+                List<String> importantSteps = result.getImportantSteps();
+                for (int i = 0; i < importantSteps.size(); i++) {
+                    String currentId = importantSteps.get(i);
+        
+                    if (i == importantSteps.size() - 1 && i > 0 && currentId.equals(importantSteps.get(i - 1))) {
+                        continue;
+                    }
+                    Station station = stationMap.get(currentId);
+                    if (i == 0) {
+                        System.out.print("\n จุดสำคัญ (Important Steps):\n");
+                        System.out.print(stationUtil.IDtoName(startId) + "(" + startId + ")" + " -> ");
+                        System.out.print(stationUtil.IDtoName(currentId) + "(" + station.getId() + ")");
                     } else {
-                        // สีปกติสำหรับสถานีอื่น
-                        circleStation11.setStyle("-fx-fill: " + someStation.getColor() + ";");
+                        System.out.print(" -> " + stationUtil.IDtoName(currentId) + "(" + station.getId() + ")");
                     }
-
-                    startStationBox.getChildren().addAll(startIdLabel, circleStation11);
-                    someStation = stationMap.get(endId);
-                    endIdLabel = new Label("⚲ " + stationUtil.IDtoName(endId) + " (" + endId + ")");
-                    endIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
-
-                    if (someStation.getId().equals("CEN")) {
-                        // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
-                        circleStation21.setFill(new LinearGradient(
-                                0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                                new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
-                                new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
-                        ));
-                    } else {
-                        // สีปกติสำหรับสถานีอื่น
-                        circleStation21.setStyle("-fx-fill: " + someStation.getColor() + ";");
-                    }
-
-                    endStationBox.getChildren().addAll(endIdLabel, circleStation21);
-                    // เพิ่มองค์ประกอบใน PathBox1
-
-                    VBox routeInfoBox = new VBox(10); // ระยะห่างระหว่างแต่ละสถานี
-                    routeInfoBox.setStyle(
-                            "-fx-alignment: left; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 10 25 10 10; "
-                                    + "-fx-background-color:rgb(239, 239, 239); "
-                                    + "-fx-background-radius: 5;");
-                    // start
-                    routeInfoBox.setMaxWidth(350);
-                    HBox startBox = new HBox(10); // ระยะห่างระหว่าง Circle และ Label
-                    someStation = stationMap.get(startId);
-                    Label startLabel = new Label(stationUtil.IDtoName(startId) + " (" + startId + ")");
-                    startLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
-                    Circle startCircle = new Circle(7);
-
-                    if (someStation.getId().equals("CEN")) {
-                        // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
-                        startCircle.setFill(new LinearGradient(
-                                0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                                new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
-                                new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
-                        ));
-                    } else {
-                        // สีปกติสำหรับสถานีอื่น
-                        startCircle.setStyle("-fx-fill: " + someStation.getColor() + ";");
-                    }
-
-                    startBox.setStyle("-fx-alignment: center-left;");
-                    startBox.getChildren().addAll(startCircle, startLabel);
-                    Label rec = new Label("Recommend Route:");
-                    Label a = new Label("No interchanges required | Total stations: " + i);
-                    rec.setStyle("-fx-text-fill:rgb(132, 132, 132); -fx-font-size: 13px; -fx-font-weight: bold;");
-                    a.setStyle("-fx-text-fill: #003366; -fx-font-size: 13px; -fx-font-weight: bold;");
-                    routeInfoBox.getChildren().addAll(rec, a, startBox);
-
-                    // end
-                    HBox endBox = new HBox(10); // ระยะห่างระหว่าง Circle และ Label
-                    someStation = stationMap.get(endId);
-                    Label endLabel = new Label(stationUtil.IDtoName(endId) + " (" + endId + ")");
-                    endLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
-                    Circle endCircle = new Circle(7);
-
-                    if (someStation.getId().equals("CEN")) {
-                        // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
-                        endCircle.setFill(new LinearGradient(
-                                0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                                new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
-                                new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
-                        ));
-                    } else {
-                        // สีปกติสำหรับสถานีอื่น
-                        endCircle.setStyle("-fx-fill: " + someStation.getColor() + ";");
-                    }
-
-                    endBox.setStyle("-fx-alignment: center-left;");
-                    endBox.getChildren().addAll(endCircle, endLabel);
-                    routeInfoBox.getChildren().add(endBox);
-
-                    PathBox1.getChildren().addAll(infoLabel, intro1, startStationBox, circleBox1, intro2,
-                            endStationBox, routeInfoBox);
-
-                } else {
-                    Station someStation = stationMap.get(startId);
-                    // System.out.println("📍 เส้นทางนี้มีการเปลี่ยนสาย | จำนวน " + i + " สถานี");
-                    startIdLabel = new Label("⚲ " + stationUtil.IDtoName(startId) + " (" + startId + ")");
-                    startIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
-
-                    if (someStation.getId().equals("CEN")) {
-                        // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
-                        circleStation11.setFill(new LinearGradient(
-                                0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                                new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
-                                new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
-                        ));
-                    } else {
-                        // สีปกติสำหรับสถานีอื่น
-                        circleStation11.setStyle("-fx-fill: " + someStation.getColor() + ";");
-                    }
-
-                    startStationBox.getChildren().addAll(startIdLabel, circleStation11);
-                    someStation = stationMap.get(endId);
-                    endIdLabel = new Label("⚲ " + stationUtil.IDtoName(endId) + " (" + endId + ")");
-                    endIdLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 15px; -fx-alignment: left;");
-
-                    if (someStation.getId().equals("CEN")) {
-                        // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
-                        circleStation21.setFill(new LinearGradient(
-                                0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                                new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
-                                new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
-                        ));
-                    } else {
-                        // สีปกติสำหรับสถานีอื่น
-                        circleStation21.setStyle("-fx-fill: " + someStation.getColor() + ";");
-                    }
-
-                    endStationBox.getChildren().addAll(endIdLabel, circleStation21);
-
-                    // สร้าง VBox สำหรับแสดงเส้นทาง
-                    VBox routeInfoBox = new VBox(10); // ระยะห่างระหว่างแต่ละสถานี
-                    routeInfoBox.setStyle(
-                            "-fx-alignment: left; -fx-padding: 20; -fx-border-width: 2; -fx-padding: 10 25 10 10; "
-                                    + "-fx-background-color:rgb(239, 239, 239); "
-                                    + "-fx-background-radius: 5;");
-                    routeInfoBox.setMaxWidth(350);
-
-                    someStation = stationMap.get(startId);
-                    // if (someStation.isInterchange() == false) {
-                    HBox startBox = new HBox(10); // ระยะห่างระหว่าง Circle และ Label
-                    Label startLabel = new Label(stationUtil.IDtoName(startId) + " (" + startId + ")");
-                    startLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
-                    Circle startCircle = new Circle(7);
-
-                    if (someStation.getId().equals("CEN")) {
-                        // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
-                        startCircle.setFill(new LinearGradient(
-                                0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                                new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
-                                new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
-                        ));
-                    } else {
-                        // สีปกติสำหรับสถานีอื่น
-                        startCircle.setStyle("-fx-fill: " + someStation.getColor() + ";");
-                    }
-
-                    startBox.setStyle("-fx-alignment: center-left;");
-                    startBox.getChildren().addAll(startCircle, startLabel);
-                    Label rec = new Label("Recommend Route:");
-                    Label a = new Label("This route has interchanges | Total stations: " + i);
-                    rec.setStyle("-fx-text-fill:rgb(132, 132, 132); -fx-font-size: 13px; -fx-font-weight: bold;");
-                    a.setStyle("-fx-text-fill: #003366; -fx-font-size: 13px; -fx-font-weight: bold;");
-                    routeInfoBox.getChildren().addAll(rec, a, startBox);
-
-                    // }
-
-                    // วนลูปเพื่อสร้าง HBox สำหรับแต่ละสถานี
-                    for (int j = 0; j < importantSteps.size(); j++) {
-                        String step = importantSteps.get(j);
-                        String[] parts = step.split("->");
-                        String fromId = parts[0];
-                        String toId = parts[1];
-
-                        String fromName = stationUtil.IDtoName(fromId);
-                        String toName = stationUtil.IDtoName(toId);
-
-                        // สร้าง Circle สำหรับสถานีต้นทาง
-                        Station fromStation = stationMap.get(fromId);
-                        Circle fromCircle = new Circle(7); // ขนาดรัศมี 5
-                        if (fromStation != null) {
-                            if (fromStation.getId().equals("CEN")) {
-                                // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
-                                fromCircle.setFill(new LinearGradient(
-                                        0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                                        new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
-                                        new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
-                                ));
-                            } else {
-                                // สีปกติสำหรับสถานีอื่น
-                                fromCircle.setStyle("-fx-fill: " + fromStation.getColor() + ";");
-                            }
-                        } else {
-                            fromCircle.setStyle("-fx-fill: transparent;"); // หากไม่มีข้อมูลสี
-                        }
-
-                        // สร้าง Label สำหรับสถานีต้นทาง
-                        Label fromLabel = new Label(fromName + " (" + fromId + ")");
-                        fromLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
-
-                        // สร้าง HBox สำหรับสถานีต้นทาง
-                        HBox fromBox = new HBox(10); // ระยะห่างระหว่าง Circle และ Label
-                        fromBox.setStyle("-fx-alignment: center-left;");
-                        fromBox.getChildren().addAll(fromCircle, fromLabel);
-
-                        // เพิ่ม HBox ของสถานีต้นทางเข้าไปใน VBox
-                        routeInfoBox.getChildren().add(fromBox);
-
-                        // สร้าง Circle สำหรับสถานีปลายทาง
-                        Station toStation = stationMap.get(toId);
-                        Circle toCircle = new Circle(7); // ขนาดรัศมี 5
-                        if (toStation != null) {
-                            if (toStation.getId().equals("CEN")) {
-                                // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
-                                toCircle.setFill(new LinearGradient(
-                                        0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                                        new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
-                                        new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
-                                ));
-                            } else {
-                                // สีปกติสำหรับสถานีอื่น
-                                toCircle.setStyle("-fx-fill: " + toStation.getColor() + ";");
-                            }
-                        } else {
-                            toCircle.setStyle("-fx-fill: transparent;"); // หากไม่มีข้อมูลสี
-                        }
-
-                        // สร้าง Label สำหรับสถานีปลายทาง
-                        if (!fromId.equals("CEN") && !toId.equals("CEN")) {
-                            Label emoji = new Label("🚶");
-                            routeInfoBox.getChildren().add(emoji);
-                        }
-                        Label toLabel = new Label(toName + " (" + toId + ")");
-                        toLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
-
-                        // สร้าง HBox สำหรับสถานีปลายทาง
-                        HBox toBox = new HBox(10); // ระยะห่างระหว่าง Circle และ Label
-                        toBox.setStyle("-fx-alignment: center-left;");
-                        toBox.getChildren().addAll(toCircle, toLabel);
-
-                        // เพิ่ม HBox ของสถานีปลายทางเข้าไปใน VBox
-                        routeInfoBox.getChildren().add(toBox);
-                    }
-
-                    someStation = stationMap.get(endId);
-                    if (someStation.isInterchange() == false) {
-                        HBox endBox = new HBox(10); // ระยะห่างระหว่าง Circle และ Label
-                        Label endLabel = new Label(stationUtil.IDtoName(endId) + " (" + endId + ")");
-                        endLabel.setStyle("-fx-text-fill: #003366; -fx-font-size: 14px;");
-                        Circle endCircle = new Circle(7);
-
-                        if (someStation.getId().equals("CEN")) {
-                            // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
-                            endCircle.setFill(new LinearGradient(
-                                    0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                                    new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
-                                    new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
-                            ));
-                        } else {
-                            // สีปกติสำหรับสถานีอื่น
-                            endCircle.setStyle("-fx-fill: " + someStation.getColor() + ";");
-                        }
-
-                        endBox.setStyle("-fx-alignment: center-left;");
-                        endBox.getChildren().addAll(endCircle, endLabel);
-                        routeInfoBox.getChildren().add(endBox);
-                    }
-
-                    // เพิ่ม VBox (routeInfoBox) เข้าไปใน PathBox1
-                    PathBox1.getChildren().addAll(infoLabel, intro1, startStationBox, circleBox1, intro2, endStationBox,
-                            routeInfoBox);
                 }
-
-                System.out.println("\n🕒 เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
-                Label timeLabel = new Label(" 🕒 Total times: " + result.getTotalTime() + " minutes");
-                PathBox1.getChildren().add(timeLabel);
+                System.out.println();
+        
+                System.out.println("\n เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
             }
-
-            // สร้าง Scene ใหม่สำหรับหน้าถัดไป
-            Scene nextScene = new Scene(nextPage);
-            stage.setScene(nextScene); // เปลี่ยน Scene ไปยังหน้าถัดไป
-            stage.setResizable(true); // อนุญาตให้ปรับขนาดหน้าต่างได้
         });
 
         clearButton.setOnAction(event -> {

@@ -16,6 +16,10 @@ public class AlgorithmTest {
         // โหลดสถานีมาจาก JsonReader
         List<Station> stationList = new ArrayList<>(reader.getStationMap().values());
 
+        // เก็บข้อมูลสถานีในรูปแบบ List<Station> เพื่อนำไปใช้ต่อ
+        List<Station> fromStations = new ArrayList<>();
+        List<Station> toStations = new ArrayList<>();
+
         // สร้าง StationUtil
         StationUtil stationUtil = new StationUtil(stationList);
 
@@ -68,16 +72,21 @@ public class AlgorithmTest {
 
                     if (!step.equals(startId) && k == 0) {
                         System.out.print("🔄 " + stationUtil.IDtoName(startId) + " (" + startId + ") ➜ ");
+                        fromStations.add(stationMap.get(startId)); // ✅ ตรงนี้ควรเป็น startId
                         k++;
                     }
-
+                    
                     if (firstStep) {
                         // เริ่มต้นจากสถานีต้นทางไปยังจุดเปลี่ยนสายแรก
                         System.out.print(fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
+                        if (!fromId.equals(startId)) {
+                            fromStations.add(stationMap.get(fromId)); // ✅ ป้องกันซ้ำ
+                        }
                         firstStep = false;
                     } else {
                         // แสดงเฉพาะจุดเปลี่ยนสายถัดไป
                         System.out.print(" ➜ " + fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
+                        toStations.add(stationMap.get(toId));
                     }
                 }
 
@@ -85,12 +94,20 @@ public class AlgorithmTest {
                 String lastToId = importantSteps.get(importantSteps.size() - 1).split("->")[1];
                 if (!lastToId.equals(endId)) {
                     System.out.print(" ➜ " + stationUtil.IDtoName(endId) + " (" + endId + ")");
+                    toStations.add(stationMap.get(endId));
                 }
 
                 System.out.println(); // ขึ้นบรรทัดใหม่
             }
 
             System.out.println("\n🕒 เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
+        }
+        newTrainFareReader fareReader = new newTrainFareReader("TrainPrice.xlsx", stationUtil);
+        try {
+            int totalFare = fareReader.calculateTotalFare(fromStations, toStations);
+            System.out.println("💰 ค่าโดยสารรวม: " + totalFare + " บาท");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
