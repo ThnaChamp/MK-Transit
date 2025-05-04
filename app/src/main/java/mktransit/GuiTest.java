@@ -18,6 +18,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -34,14 +38,21 @@ public class GuiTest extends Application {
         JsonReader reader = new JsonReader();
         reader.loadJsonData(); // แค่โหลด
 
-        List<Line> lines = reader.getLines(); // ดึงข้อมูล Line
         Map<String, Station> stationMap = reader.getStationMap(); // ดึงข้อมูล Station
         PathFinder pathFinder = new PathFinder(stationMap);
         // โหลดสถานีมาจาก JsonReader
         List<Station> stationList = new ArrayList<>(reader.getStationMap().values());
         StationUtil stationUtil = new StationUtil(stationList);
 
+        PathFinder pathFinder = new PathFinder(stationMap);
+
+        // โหลดสถานีมาจาก JsonReader
+        List<Station> stationList = new ArrayList<>(reader.getStationMap().values());
+        StationUtil stationUtil = new StationUtil(stationList);
+
         HBox root = new HBox();
+
+        Scene scene = new Scene(root, 1530, 790);
 
         // ---------- LEFT ----------
         StackPane leftPane = new StackPane();
@@ -169,28 +180,53 @@ public class GuiTest extends Application {
         Label stationName1 = new Label();
         stationName1.setStyle("-fx-text-fill: #003366; -fx-font-size: 13px; -fx-font-style: italic;");
 
+        Circle circleStation1 = new Circle(6);
+
         // จัด TextField และ Label ในแนวนอน
         HBox textField1Box = new HBox(10); // ระยะห่างระหว่าง TextField และ Label
         textField1Box.setStyle("-fx-alignment: center;"); // จัดให้อยู่ชิดซ้าย
-        textField1Box.getChildren().addAll(textField1, stationName1);
+        textField1Box.getChildren().addAll(textField1);
 
         // เพิ่ม Listener ให้ TextField1
         textField1.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
                 stationName1.setText("");
                 textField1.setStyle(""); // ล้างชื่อสถานีหากไม่มีการป้อนข้อมูล
+                // textField1Box.getChildren().addAll(textField1, circleStation1, stationName1);
+                textField1Box.getChildren().remove(stationName1);
                 return;
             }
 
-            String stationId = newValue.toUpperCase();
-            Station SomeStation = stationMap.get(stationId); // ดึงข้อมูลสถานีจาก map
+            String stationId1 = newValue.toUpperCase();
+            Station someStation1 = stationMap.get(stationId1); // ดึงข้อมูลสถานีจาก map
 
-            if (SomeStation == null) {
+            if (!textField1Box.getChildren().contains(stationName1)) {
+                textField1Box.getChildren().add(1, stationName1);
+            }
+
+            if (someStation1 == null) {
                 stationName1.setText("Station not found"); // แสดงข้อความเมื่อไม่พบสถานี
                 textField1.setStyle("-fx-border-color: red;"); // เปลี่ยนสีขอบ TextField เป็นสีแดง
+                textField1Box.getChildren().remove(circleStation1);
             } else {
-                stationName1.setText(SomeStation.getName()); // แสดงชื่อสถานี
+                stationName1.setText(someStation1.getName()); // แสดงชื่อสถานี
                 textField1.setStyle(""); // ล้างสีขอบ TextField
+
+                if (!textField1Box.getChildren().contains(circleStation1)) {
+                    textField1Box.getChildren().add(1, circleStation1); // เพิ่มวงกลมกลับมาในตำแหน่งที่ 2
+                }
+                
+                if (someStation1.getId().equals("CEN")) {
+                    // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
+                    circleStation1.setFill(new LinearGradient(
+                            0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
+                            new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
+                            new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
+                    ));
+                } else {
+                    // สีปกติสำหรับสถานีอื่น
+                    circleStation1.setFill(Color.web(someStation1.getColor()));
+                }
             }
         });
 
@@ -203,12 +239,14 @@ public class GuiTest extends Application {
 
         // Label สำหรับแสดงชื่อสถานี
         Label stationName2 = new Label();
-        stationName1.setStyle("-fx-text-fill: #003366; -fx-font-size: 13px; -fx-font-style: italic;");
+        stationName2.setStyle("-fx-text-fill: #003366; -fx-font-size: 13px; -fx-font-style: italic;");
+
+        Circle circleStation2 = new Circle(6);
 
         // จัด TextField และ Label ในแนวนอน
         HBox textField2Box = new HBox(10); // ระยะห่างระหว่าง TextField และ Label
         textField2Box.setStyle("-fx-alignment: center;"); // จัดให้อยู่ชิดซ้าย
-        textField2Box.getChildren().addAll(textField2, stationName2);
+        textField2Box.getChildren().addAll(textField2);
 
         // เพิ่ม Listener ให้ TextField1
         textField2.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -218,15 +256,35 @@ public class GuiTest extends Application {
                 return;
             }
 
-            String stationId = newValue.toUpperCase();
-            Station SomeStation = stationMap.get(stationId); // ดึงข้อมูลสถานีจาก map
+            String stationId2 = newValue.toUpperCase();
+            Station someStation2 = stationMap.get(stationId2); // ดึงข้อมูลสถานีจาก map
 
-            if (SomeStation == null) {
+            if (!textField2Box.getChildren().contains(stationName2)) {
+                textField2Box.getChildren().add(1, stationName2);
+            }
+
+            if (someStation2 == null) {
                 stationName2.setText("Station not found"); // แสดงข้อความเมื่อไม่พบสถานี
                 textField2.setStyle("-fx-border-color: red;"); // เปลี่ยนสีขอบ TextField เป็นสีแดง
+                textField2Box.getChildren().remove(circleStation2);
             } else {
-                stationName2.setText(SomeStation.getName()); // แสดงชื่อสถานี
+                stationName2.setText(someStation2.getName()); // แสดงชื่อสถานี
                 textField2.setStyle(""); // ล้างสีขอบ TextField
+
+                if (!textField2Box.getChildren().contains(circleStation2)) {
+                    textField2Box.getChildren().add(1, circleStation2); // เพิ่มวงกลมกลับมาในตำแหน่งที่ 2
+                }
+                if (someStation2.getId().equals("CEN")) {
+                    // ใช้ LinearGradient สำหรับสีเขียวอ่อนและเขียวเข้ม
+                    circleStation2.setFill(new LinearGradient(
+                            0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
+                            new Stop(0, Color.web("#84c469")), // สีเขียวอ่อน
+                            new Stop(1, Color.web("#328674")) // สีเขียวเข้ม
+                    ));
+                } else {
+                    // สีปกติสำหรับสถานีอื่น
+                    circleStation2.setFill(Color.web(someStation2.getColor()));
+                }
             }
         });
 
@@ -305,6 +363,10 @@ public class GuiTest extends Application {
         clearButton.setOnAction(event -> {
             textField1.clear();
             textField2.clear();
+            textField1Box.getChildren().remove(circleStation1);
+            textField2Box.getChildren().remove(circleStation2);
+            textField1Box.getChildren().remove(stationName1);
+            textField2Box.getChildren().remove(stationName2);
         });
 
         // Add buttons to an HBox
@@ -323,7 +385,6 @@ public class GuiTest extends Application {
         HBox.setHgrow(leftPane, Priority.ALWAYS);
         root.getChildren().addAll(leftPane, rightPane);
 
-        Scene scene = new Scene(root, 900, 600);
         stage.setTitle("MK Transit");
         stage.setScene(scene);
         stage.show();

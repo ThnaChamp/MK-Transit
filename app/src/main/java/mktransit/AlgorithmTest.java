@@ -24,16 +24,17 @@ public class AlgorithmTest {
 
         // System.out.println(stationName); // จะได้ "สยาม" (ถ้าข้อมูลมีใน JSON)
 
-
         // ลองหาเส้นทางที่ "ไม่ผ่าน interchange"
 
-        String startId = "YL01";
-        String endId = "RW02";
+        String startId = "BL06";
+        String endId = "YL05";
 
         PathResult result = pathFinder.findShortestPath(startId, endId);
+        int i = 0;
 
         if (result.getFullPath().isEmpty()) {
-            System.out.println("❌ ไม่พบเส้นทางจาก " + startId + " ไปยัง " + endId);
+            System.out.println("❌ ไม่พบเส้นทางจาก " + stationUtil.IDtoName(startId) + "(" + startId + ")" + " ไปยัง "
+                    + stationUtil.IDtoName(endId) + "(" + endId + ")");
         } else {
             System.out.println("✅ เจอเส้นทาง!");
             System.out.println("เส้นทางเดินทั้งหมด:");
@@ -41,27 +42,53 @@ public class AlgorithmTest {
             for (String stationId : result.getFullPath()) {
                 Station station = stationMap.get(stationId);
                 System.out.println("- " + station.getName() + " (" + station.getId() + ")");
+                i++;
             }
 
-            
-            List<String> importantSteps = result.getImportantSteps();
-            for (int i = 0; i < importantSteps.size(); i++) {
-                String currentId = importantSteps.get(i);
-            
-                // ป้องกัน IndexOutOfBounds: ต้องเช็ก i > 0 ก่อนใช้ i - 1
-                if (i == importantSteps.size() - 1 && i > 0 && currentId.equals(importantSteps.get(i - 1))) {
-                    continue; // ข้ามถ้าซ้ำกับสถานีก่อนหน้า
+            List<String> fullPath = result.getFullPath();
+            List<String> importantSteps = PathUtil.filterImportantStepsWithActualTransfers(fullPath, stationMap);
+
+            if (importantSteps.isEmpty()) {
+                System.out.print("📍 ไม่มีจุดที่ต้องเปลี่ยนสายตลอดเส้นทาง | จำนวน " + i + " สถานี ");
+                System.out.println(stationUtil.IDtoName(startId) + " (" + startId + ") ➜ " + stationUtil.IDtoName(endId)
+                        + " (" + endId + ")");
+            } else {
+                System.out.println("📍 เส้นทางนี้มีการเปลี่ยนสาย | จำนวน " + i + " สถานี");
+
+                int k = 0;
+                boolean firstStep = true;
+                for (int j = 0; j < importantSteps.size(); j++) {
+                    String step = importantSteps.get(j);
+                    String[] parts = step.split("->");
+                    String fromId = parts[0];
+                    String toId = parts[1];
+
+                    String fromName = stationUtil.IDtoName(fromId);
+                    String toName = stationUtil.IDtoName(toId);
+
+                    if (!step.equals(startId) && k == 0) {
+                        System.out.print("🔄 " + stationUtil.IDtoName(startId) + " (" + startId + ") ➜ ");
+                        k++;
+                    }
+
+                    if (firstStep) {
+                        // เริ่มต้นจากสถานีต้นทางไปยังจุดเปลี่ยนสายแรก
+                        System.out.print(fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
+                        firstStep = false;
+                    } else {
+                        // แสดงเฉพาะจุดเปลี่ยนสายถัดไป
+                        System.out.print(" ➜ " + fromName + " (" + fromId + ") ➜ " + toName + " (" + toId + ")");
+                    }
                 }
-                Station station = stationMap.get(currentId);
-                if (i == 0) {
-                    System.out.print("\n📍 จุดสำคัญ (Important Steps):\n");
-                    System.out.print(stationUtil.IDtoName(startId)+"("+startId+")" + " -> ");
-                    System.out.print(stationUtil.IDtoName(currentId)+"("+station.getId()+")");
-                } else {
-                    System.out.print(" -> " + stationUtil.IDtoName(currentId)+"("+station.getId()+")");
+
+                // จบด้วยปลายทางถ้ายังไม่ได้แสดง
+                String lastToId = importantSteps.get(importantSteps.size() - 1).split("->")[1];
+                if (!lastToId.equals(endId)) {
+                    System.out.print(" ➜ " + stationUtil.IDtoName(endId) + " (" + endId + ")");
                 }
+
+                System.out.println(); // ขึ้นบรรทัดใหม่
             }
-            System.out.println();
 
             System.out.println("\n🕒 เวลารวมทั้งหมด: " + result.getTotalTime() + " นาที");
         }

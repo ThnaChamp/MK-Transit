@@ -52,7 +52,7 @@ public class JsonReader {
                         connections.add(new Connection(to, time, type, connLine));
                     }
 
-                    Station station = new Station(id, name, interchange, connections);
+                    Station station = new Station(id, name, interchange, connections, lineColor);
                     stations.add(station);
                     stationMap.put(id, station);
                 }

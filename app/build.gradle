@@ -45,8 +45,9 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'mktransit.GuiTest'
     // mainClass = 'mktransit.Main'
+    // mainClass = 'mktransit.GuiTest'
+    mainClass = 'mktransit.GuiTest1'
     // mainClass = 'mktransit.AlgorithmTest'
     // mainClass = 'mktransit.ZoomableMap'
     // mainClass = 'mktransit.ChoiceBoxTest'
