@@ -43,13 +43,6 @@ public class GuiTest extends Application {
         // โหลดสถานีมาจาก JsonReader
         List<Station> stationList = new ArrayList<>(reader.getStationMap().values());
         StationUtil stationUtil = new StationUtil(stationList);
-
-        PathFinder pathFinder = new PathFinder(stationMap);
-
-        // โหลดสถานีมาจาก JsonReader
-        List<Station> stationList = new ArrayList<>(reader.getStationMap().values());
-        StationUtil stationUtil = new StationUtil(stationList);
-
         HBox root = new HBox();
 
         Scene scene = new Scene(root, 1530, 790);
