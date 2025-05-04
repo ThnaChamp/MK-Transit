@@ -201,9 +201,7 @@
           "interchange": true,
           "connections": [
             { "to": "N1", "time": 2 },
-            { "to": "E1", "time": 2 },
-            { "to": "W1", "time": 4 , "line": "BTS_SILOM" },
-            { "to": "S1", "time": 3 , "line": "BTS_SILOM" }
+            { "to": "E1", "time": 2 }
           ]
         },
         {
@@ -412,9 +410,7 @@
           "interchange": true,
           "connections": [
             { "to": "W1", "time": 1 },
-            { "to": "S1", "time": 3 },
-            { "to": "N1", "time": 2 , "line": "BTS_SUKHUMVIT" },
-            { "to": "E1", "time": 2 , "line": "BTS_SUKHUMVIT" }
+            { "to": "S1", "time": 3 }
           ]
         },
         {
@@ -1033,6 +1029,7 @@
         {
           "id": "A4",
           "name": "Hua-Mak",
+          "interchange": true,
           "connections": [
             { "to": "A5", "time": 3 },
             { "to": "A3", "time": 3 },
