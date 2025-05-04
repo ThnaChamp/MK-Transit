@@ -30,8 +30,8 @@ public class AlgorithmTest {
 
         // ลองหาเส้นทางที่ "ไม่ผ่าน interchange"
 
-        String startId = "BL06";
-        String endId = "YL05";
+        String startId = "N23";
+        String endId = "N24";
 
         PathResult result = pathFinder.findShortestPath(startId, endId);
         int i = 0;
