@@ -146,11 +146,9 @@ public class GuiTest1 extends Application {
                                                                                   // และจัดให้อยู่ตรงกลาง
 
         // Logo
-        Image logoImage = new Image(
-                "https://th.m.wikipedia.org/wiki/%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C:BTS-Logo_Gold.svg"); // URL
-                                                                                                           // ของโลโก้
+        Image logoImage = new Image(getClass().getResource("/logo2.png").toExternalForm());
         ImageView logoView = new ImageView(logoImage);
-        logoView.setFitWidth(100); // กำหนดขนาดโลโก้
+        logoView.setFitWidth(250); // กำหนดขนาดโลโก้
         logoView.setPreserveRatio(true);
 
         // Group for Project Name and TextFields
@@ -337,7 +335,7 @@ public class GuiTest1 extends Application {
 
             // Logo
             ImageView logoView1 = new ImageView(logoImage);
-            logoView1.setFitWidth(100); // กำหนดขนาดโลโก้
+            logoView1.setFitWidth(250); // กำหนดขนาดโลโก้
             logoView1.setPreserveRatio(true);
 
             // Project Name
