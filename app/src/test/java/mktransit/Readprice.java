@@ -10,9 +10,9 @@ public class Readprice {
             Map<String, Map<String, Map<String, Integer>>> allFareTables = reader.loadFareTables();
 
             // ระบุสายและสถานี
-            String lineName = "GoldLine"; // ชื่อสาย
-            String fromStation = "G1";   // สถานีต้นทาง
-            String toStation = "G2";     // สถานีปลายทาง
+            String lineName = "GreenLine"; // ชื่อสาย
+            String fromStation = "N23";   // สถานีต้นทาง
+            String toStation = "N1";     // สถานีปลายทาง
 
             // ค้นหาราคาค่าโดยสาร
             Map<String, Map<String, Integer>> fareTable = allFareTables.get(lineName);
