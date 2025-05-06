@@ -50,6 +50,9 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 1530, 790);
 
+        Image appIcon = new Image(getClass().getResource("/app_icon.png").toExternalForm());
+        stage.getIcons().add(appIcon);
+
         // ---------- LEFT ----------
         StackPane leftPane = new StackPane();
         leftPane.setPrefWidth(150);
@@ -188,6 +191,7 @@ public class Main extends Application {
                 textField1.setStyle(""); // ล้างชื่อสถานีหากไม่มีการป้อนข้อมูล
                 // textField1Box.getChildren().addAll(textField1, circleStation1, stationName1);
                 textField1Box.getChildren().remove(stationName1);
+                textField1Box.getChildren().remove(circleStation1);
                 return;
             }
 
@@ -248,6 +252,7 @@ public class Main extends Application {
                 stationName2.setText("");
                 textField2.setStyle(""); // ล้างชื่อสถานีหากไม่มีการป้อนข้อมูล
                 textField2Box.getChildren().remove(stationName2);
+                textField2Box.getChildren().remove(circleStation2);
                 return;
             }
 
@@ -738,7 +743,7 @@ public class Main extends Application {
                             toBox.getChildren().addAll(toCircle, toLabel);
                             // เพิ่ม HBox ของสถานีปลายทางเข้าไปใน VBox
                             routeInfoBox.getChildren().add(toBox);
-                            if(toId.equals(endId)) {
+                            if (toId.equals(endId)) {
                                 isLastStationDisplayed = true;
                             } else {
                                 isLastStationDisplayed = false;
@@ -821,7 +826,7 @@ public class Main extends Application {
                             // เพิ่ม HBox ของสถานีปลายทางเข้าไปใน VBox
                             routeInfoBox.getChildren().add(toBox);
                             Station toStation1 = stationMap.get(toId);
-                            if(toId.equals(endId)) {
+                            if (toId.equals(endId)) {
                                 isLastStationDisplayed = true;
                             } else {
                                 isLastStationDisplayed = false;
