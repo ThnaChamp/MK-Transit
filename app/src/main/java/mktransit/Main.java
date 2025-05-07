@@ -229,7 +229,7 @@ public class Main extends Application {
         });
 
         // TextField2
-        Label inputLabel2 = new Label("Enter End Station ID:");
+        Label inputLabel2 = new Label("Enter Terminal Station ID:");
         inputLabel2.setStyle("-fx-text-fill: #003366;-fx-font-weight: bold;-fx-font-size: 13px;");
         TextField textField2 = new TextField();
         textField2.setPromptText("Ex. N24");
@@ -446,7 +446,7 @@ public class Main extends Application {
                 endStationBox.setStyle("-fx-alignment: center-left;");
 
                 Label intro1 = new Label("Start Station:");
-                Label intro2 = new Label("End Station:");
+                Label intro2 = new Label("Terminal Station:");
 
                 Station checkStation = stationMap.get(startId);
                 if (importantSteps.isEmpty()) {
