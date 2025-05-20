@@ -58,7 +58,7 @@ public class Main extends Application {
         leftPane.setPrefWidth(150);
 
         // Map image
-        Image image = new Image("https://www.bts.co.th/assets/images/yellow-map.jpg");
+        Image image = new Image(getClass().getResource("/Map.png").toExternalForm());
         ImageView imageView = new ImageView(image);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
