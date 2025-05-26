@@ -40,8 +40,11 @@ MK Transit is a group project for CPE112 [ Programming with Data Structures ] Cl
 
 ## How to checkout the project
 ```
+feel free to clone our project 
+
 - git clone https://github.com/ThnaChamp/MK-Transit.git
 
 How to run ?
+
 - gradle run
 ```
