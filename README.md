@@ -39,12 +39,12 @@ MK Transit is a group project for CPE112 [ Programming with Data Structures ] Cl
 | 67070501031    | BENJAMIN GARFORTH      |
 
 ## How to checkout the project
+
+Feel free to clone our project 
 ```
-feel free to clone our project 
-
 - git clone https://github.com/ThnaChamp/MK-Transit.git
-
+```
 How to run ?
-
+```
 - gradle run
 ```
