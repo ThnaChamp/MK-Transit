@@ -3,11 +3,11 @@
 ## What is this project?
 
 This project is a metro route display system developed to assist users in finding the most suitable routes for traveling via various electric train lines within Bangkok and its metropolitan area.
----
+
 ## Overview
 
 This program can calculate the travel time from the departure station to the destination station by considering the shortest travel duration. It clearly indicates transfer points between lines. Users can input their starting and ending stations, and the system will display the optimal route, including the number of stations, transfer points, and travel time. Additionally, the program features a GUI built with JavaFX to enhance user convenience.
----
+
 ## Tech used
 - Java
 - JavaFX
@@ -27,7 +27,7 @@ Used to store all possible routes from the starting station to the destination s
 
 - ### Dijkstra's Algorithm
 To find the shortest path from the starting station to the destination station by considering the travel time between stations.
----
+
 MK Transit is a group project for CPE112 [ Programming with Data Structures ] Class.
 ---
 | Student number | Fullname               | 
