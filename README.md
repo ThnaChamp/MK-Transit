@@ -37,3 +37,11 @@ MK Transit is a group project for CPE112 [ Programming with Data Structures ] Cl
 | 67070501023    | THANATIP NITINANTAKUL  |
 | 67070501028    | NANTAKORN PINSUPAPORN  |
 | 67070501031    | BENJAMIN GARFORTH      |
+
+## How to checkout the project
+```
+- git clone https://github.com/ThnaChamp/MK-Transit.git
+
+How to run ?
+- gradle run
+```
