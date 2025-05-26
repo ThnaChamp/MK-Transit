@@ -28,6 +28,14 @@ Used to store all possible routes from the starting station to the destination s
 - ### Dijkstra's Algorithm
 To find the shortest path from the starting station to the destination station by considering the travel time between stations.
 
+## How to use the program
+![Alt text](assets/input.jpg)
+- Open the GUI.
+- Enter your current station and your destination.
+- Submit.
+- The program will display the shortest routes with interchage station (if exists).
+![Alt text](assets/output.jpg)
+
 MK Transit is a group project for CPE112 [ Programming with Data Structures ] Class.
 ---
 | Student number | Fullname               | 
