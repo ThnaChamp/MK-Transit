@@ -1,6 +1,6 @@
-# MK-Transit
+# MK-Transit (Mongkol-Transit)
 
-## What is this project?
+## About this project:
 
 This project is a metro route display system developed to assist users in finding the most suitable routes for traveling via various electric train lines within Bangkok and its metropolitan area.
 
@@ -11,6 +11,7 @@ This program can calculate the travel time from the departure station to the des
 ## Tech used:
 - Java
 - JavaFX
+- Gradle
 
 ## Data Structures used:
 - ### Graph
@@ -37,7 +38,7 @@ To find the shortest path from the starting station to the destination station b
 
 ![Alt text](assets/output.png)
 
-MK Transit is a group project for CPE112 [ Programming with Data Structures ] Class.
+MK Transit is a group project for CPE112 [ Programming with Data Structures ] Class at CPE KMUTT | BKK, TH.
 ---
 | Student number | Fullname               | 
 |----------------|------------------------|
