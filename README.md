@@ -40,7 +40,7 @@ To find the shortest path from the starting station to the destination station b
 
 ![Alt text](assets/output.png)
 
-MK Transit is a group project for CPE112 [ Programming with Data Structures ] Class at <ins>CPE KMUTT</ins> | BKK, TH.
+MK Transit is a group project for CPE112 [ Programming with Data Structures ] Class at [CPE KMUTT](https://www.cpe.kmutt.ac.th/en/) | BKK, TH.
 ---
 | Student number | Fullname               | 
 |----------------|------------------------|
