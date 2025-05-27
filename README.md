@@ -31,14 +31,16 @@ To find the shortest path from the starting station to the destination station b
 
 ## How to use the program:
 ![Alt text](assets/input.jpg)
+```
 - Open the GUI.
 - Enter your current station and your destination.
 - Submit.
 - The program will display the shortest routes with interchage station (if exists).
+```
 
 ![Alt text](assets/output.png)
 
-MK Transit is a group project for CPE112 [ Programming with Data Structures ] Class at CPE KMUTT | BKK, TH.
+MK Transit is a group project for CPE112 [ Programming with Data Structures ] Class at <ins>CPE KMUTT</ins> | BKK, TH.
 ---
 | Student number | Fullname               | 
 |----------------|------------------------|
